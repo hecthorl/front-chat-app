@@ -2,7 +2,9 @@ import { useRef, useState } from "react";
 import { io } from "socket.io-client";
 import Chat from "./Chat";
 
-const socket = io("http://localhost:4000");
+const url = process.env.REACT_APP_URL || "http://localhost:4000";
+
+const socket = io(url);
 
 const App = () => {
    const formRef = useRef(null);
