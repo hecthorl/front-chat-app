@@ -9,7 +9,7 @@ const socket = io(url);
 const App = () => {
    const formRef = useRef(null);
    const [userData, setUserData] = useState({});
-   console.log(url);
+
    socket.on("join_channel", data => {
       setUserData({
          userName: data.userName,
