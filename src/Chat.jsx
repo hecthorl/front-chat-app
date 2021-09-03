@@ -2,15 +2,18 @@ import { useEffect, useRef, useState } from "react";
 import ScrollComponent from "react-scroll-to-bottom";
 
 const getTime = fecha => {
-   return new Intl.DateTimeFormat(navigator.language, {
+   const yearDayAndMonth = new Intl.DateTimeFormat(navigator.language, {
       day: "numeric",
       month: "short",
       year: "2-digit",
-      minute: "numeric",
-      second: "numeric",
-      hour12: true,
-      hour: "2-digit",
    }).format(fecha);
+   const minuteSecondAndHour = new Intl.DateTimeFormat(navigator.language, {
+      second: "2-digit",
+      minute: "2-digit",
+      hour: "2-digit",
+      hourCycle: "h12",
+   }).format(fecha);
+   return { yearDayAndMonth, minuteSecondAndHour };
 };
 
 const Chat = ({ socket, username, room }) => {
@@ -43,9 +46,10 @@ const Chat = ({ socket, username, room }) => {
 
    return (
       <div>
-         <ScrollComponent className="Gaaa">
+         <ScrollComponent className="">
             {messages.map((item, id) => {
                const { username, date, msg } = item;
+               const { minuteSecondAndHour, yearDayAndMonth } = getTime(date);
                return (
                   <div
                      style={{ border: "1px solid red", marginBottom: "5px" }}
@@ -53,7 +57,11 @@ const Chat = ({ socket, username, room }) => {
                   >
                      <p>{msg}</p>
                      <div>{username}</div>
-                     <small>{getTime(date)}</small>
+                     <small>
+                        {yearDayAndMonth}
+                        <span style={{ margin: "0 5px" }}>·</span>
+                        {minuteSecondAndHour}
+                     </small>
                   </div>
                );
             })}
