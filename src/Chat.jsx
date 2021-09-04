@@ -1,20 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import ScrollComponent from "react-scroll-to-bottom";
-
-const getTime = fecha => {
-   const yearDayAndMonth = new Intl.DateTimeFormat(navigator.language, {
-      day: "numeric",
-      month: "short",
-      year: "2-digit",
-   }).format(fecha);
-   const minuteSecondAndHour = new Intl.DateTimeFormat(navigator.language, {
-      second: "2-digit",
-      minute: "2-digit",
-      hour: "2-digit",
-      hourCycle: "h12",
-   }).format(fecha);
-   return { yearDayAndMonth, minuteSecondAndHour };
-};
+import getTime from "./utils/getTime";
 
 const Chat = ({ socket, username, room }) => {
    const inputRef = useRef(null);
@@ -33,6 +19,7 @@ const Chat = ({ socket, username, room }) => {
 
       const msgData = {
          username,
+         uid: socket.id,
          room,
          date: new Date().getTime(),
          msg: msgTrimed,
@@ -45,21 +32,25 @@ const Chat = ({ socket, username, room }) => {
    };
 
    return (
-      <div>
-         <ScrollComponent className="">
+      <div className="max-w-[500px] w-full ">
+         <ScrollComponent scrollViewClassName="flex flex-col" className="h-96">
             {messages.map((item, id) => {
-               const { username, date, msg } = item;
+               const { username, date, msg, uid } = item;
                const { minuteSecondAndHour, yearDayAndMonth } = getTime(date);
+               const isMe = uid === socket.id ? "bg-pink-600" : "bg-yellow-400";
+               const isContainer = uid === socket.id && "self-end";
                return (
                   <div
-                     style={{ border: "1px solid red", marginBottom: "5px" }}
+                     className={isContainer + " max-w-[fit-content] mb-3"}
                      key={id}
                   >
-                     <p>{msg}</p>
-                     <div>{username}</div>
-                     <small>
+                     <div className={isMe + " rounded-md"}>
+                        <p>{msg}</p>
+                        <div>{username}</div>
+                     </div>
+                     <small className="text-white space-x-2">
                         {yearDayAndMonth}
-                        <span style={{ margin: "0 5px" }}>·</span>
+                        <span>·</span>
                         {minuteSecondAndHour}
                      </small>
                   </div>

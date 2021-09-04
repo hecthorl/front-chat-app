@@ -42,24 +42,36 @@ const App = () => {
    };
 
    return (
-      <div className="App">
-         <h1>Gaaaaaaaaaa</h1>
+      <div className="bg-purple-500 flex justify-center items-center w-screen flex-col h-screen">
+         <h1 className="text-2xl text-black">Chat</h1>
          {Object.keys(userData).length === 0 ? (
-            <form ref={formRef} onSubmit={joinRoom}>
-               <div>
-                  <span>username</span>
+            <form
+               ref={formRef}
+               onSubmit={joinRoom}
+               className="space-y-4 max-w-[500px] w-full"
+            >
+               <div className="flex justify-between">
+                  <span className="text-white text-lg">username</span>
                   <input
                      autoComplete="off"
                      type="text"
                      name="username"
                      autoFocus
+                     className="rounded bg-purple-400 text-white"
                   />
                </div>
-               <div>
-                  <span>room</span>
-                  <input autoComplete="off" type="text" name="room" />
+               <div className="flex justify-between ">
+                  <span className="text-white text-lg">room</span>
+                  <input
+                     autoComplete="off"
+                     type="text"
+                     name="room"
+                     className="rounded bg-purple-400 text-white"
+                  />
                </div>
-               <button>Enter</button>
+               <button className="w-full bg-green-100 bg-opacity-30">
+                  Enter
+               </button>
             </form>
          ) : (
             <Chat
