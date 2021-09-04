@@ -33,7 +33,10 @@ const Chat = ({ socket, username, room }) => {
 
    return (
       <div className="max-w-[500px] w-full ">
-         <ScrollComponent scrollViewClassName="flex flex-col" className="h-96">
+         <ScrollComponent
+            scrollViewClassName="flex flex-col scrollbar-thin scrollbar-thumb-blue-700 hover:scrollbar-thumb-blue-500"
+            className="h-96"
+         >
             {messages.map((item, id) => {
                const { username, date, msg, uid } = item;
                const { minuteSecondAndHour, yearDayAndMonth } = getTime(date);
@@ -44,13 +47,13 @@ const Chat = ({ socket, username, room }) => {
                      className={isContainer + " max-w-[fit-content] mb-3"}
                      key={id}
                   >
-                     <div className={isMe + " rounded-md"}>
-                        <p>{msg}</p>
+                     <div className={isMe + " rounded-md p-1"}>
+                        <p className="on-break">{msg}</p>
                         <div>{username}</div>
                      </div>
-                     <small className="text-white space-x-2">
+                     <small className="text-white">
                         {yearDayAndMonth}
-                        <span>·</span>
+                        <span className="mx-2">·</span>
                         {minuteSecondAndHour}
                      </small>
                   </div>
@@ -63,10 +66,10 @@ const Chat = ({ socket, username, room }) => {
                autoFocus
                ref={inputRef}
                type="text"
-               placeholder="Type something"
+               placeholder="Type something and then press Enter"
                name="message-text"
+               className="w-full p-1 rounded-md bg-white bg-opacity-75"
             />
-            <button>Send</button>
          </form>
       </div>
    );

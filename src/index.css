@@ -10,3 +10,9 @@
       @apply outline-none;
    }
 }
+
+@layer utilities {
+   .on-break {
+      word-break: break-word;
+   }
+}

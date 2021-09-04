@@ -43,7 +43,7 @@ const App = () => {
 
    return (
       <div className="bg-purple-500 flex justify-center items-center w-screen flex-col h-screen">
-         <h1 className="text-2xl text-black">Chat</h1>
+         <h1 className="text-2xl text-black">{userData?.room || "Chat"}</h1>
          {Object.keys(userData).length === 0 ? (
             <form
                ref={formRef}
