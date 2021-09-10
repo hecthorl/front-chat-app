@@ -1,20 +1,22 @@
 import { useEffect, useRef, useState } from "react";
 import ScrollComponent from "react-scroll-to-bottom";
-import getTime from "./utils/getTime";
+import useStore from "../store";
+import getTime from "../utils/getTime";
 
 const Chat = ({ socket, username, room }) => {
    const inputRef = useRef(null);
-   const [messages, setMessages] = useState([]);
+   const setMessages = useStore(state => state.setMessages);
+   const messages = useStore(state => state.messages);
 
    useEffect(() => {
-      socket.on("msg recibido", data => {
-         setMessages(prev => [...prev, data]);
-      });
+      socket.on("msg recibido", setMessages);
    }, [socket]);
+
+   console.log("sadasd1");
 
    const msgSubmit = async event => {
       event.preventDefault();
-      const msgTrimed = inputRef.current.value;
+      const msgTrimed = inputRef.current.value.trim();
       if (!msgTrimed) return null;
 
       const msgData = {
@@ -26,7 +28,7 @@ const Chat = ({ socket, username, room }) => {
       };
 
       await socket.emit("new message", msgData);
-      setMessages(prev => [...prev, msgData]);
+      setMessages(msgData);
 
       inputRef.current.value = "";
    };

@@ -2,13 +2,15 @@ import { useRef, useState } from "react";
 import { io } from "socket.io-client";
 import Chat from "./Chat";
 
-const url = process.env.REACT_APP_URL_BACKEND || "http://localhost:4000";
+const url = process.env.NEXT_PUBLIC_URL_BACKEND || "http://localhost:4000";
 
 const socket = io(url);
 
 const App = () => {
    const formRef = useRef(null);
    const [userData, setUserData] = useState({});
+
+   console.log("asdasd");
 
    socket.on("join_channel", data => {
       setUserData({

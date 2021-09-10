@@ -10,6 +10,7 @@ const getTime = fecha => {
       hour: "2-digit",
       hourCycle: "h12",
    }).format(fecha);
+
    return { yearDayAndMonth, minuteSecondAndHour };
 };
 
