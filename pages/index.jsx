@@ -1,5 +1,5 @@
 import Head from "next/head";
-import App from "../components/App";
+import Welcome from "../components/Welcome";
 
 export default function Home() {
    return (
@@ -7,8 +7,7 @@ export default function Home() {
          <Head>
             <title>Home</title>
          </Head>
-         <App />
-         {/* <State /> */}
+         <Welcome />
       </>
    );
 }
