@@ -1,36 +1,11 @@
-import { AiOutlineVideoCamera } from "react-icons/ai";
-import { MdInput } from "react-icons/md";
 import { FaRegKeyboard } from "react-icons/fa";
+import LoginBtn from "./LoginBtn";
+import Header from "./Header";
 
 const Welcome = () => {
    return (
       <div>
-         <header className="flex justify-between px-4 py-1 text-[#5f6368]">
-            <div className="flex gap-x-7 text-lg items-center">
-               <a href="/" className="flex">
-                  <img src="/meetIcon.png" alt="icon" className="w-8" />
-                  <span className="ml-2 text-xl">Google Meet</span>
-               </a>
-               <a href="">Resumen</a>
-               <a href="">Cómo funciona</a>
-               <a href="">Planes y precios</a>
-            </div>
-            <div className="flex gap-x-3 items-center">
-               <a href="" className="font-semibold">
-                  Inciar sesión
-               </a>
-               <button className="flex gap-x-3 border border-gray-300 hover:border-blue-600 px-5 py-3 items-center rounded">
-                  <MdInput className="text-xl text-blue-600" />
-                  <span className="text-blue-600 font-bold">
-                     Unirse a una reunión
-                  </span>
-               </button>
-               <button className="bg-blue-600 text-white flex items-center px-5 py-3 rounded gap-x-3">
-                  <AiOutlineVideoCamera className="text-xl" />
-                  <span className="font-bold">Inciar una reunión</span>
-               </button>
-            </div>
-         </header>
+         <Header />
          <section
             style={{ height: "calc(100vh - 58px)" }}
             className="flex items-center justify-center gap-x-10"
@@ -47,10 +22,7 @@ const Welcome = () => {
                   pueda usarlo en cualquier dispositivo.
                </p>
                <div className="flex pb-8 border-b border-gray-300 items-center gap-x-2">
-                  <button className="bg-blue-600 text-white flex items-center px-5 py-3 rounded gap-x-3">
-                     <AiOutlineVideoCamera className="text-xl" />
-                     <span className="font-bold">Inciar una reunión</span>
-                  </button>
+                  <LoginBtn />
                   <span>o</span>
                   <div>
                      <div className="relative h-12">
