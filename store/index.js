@@ -4,6 +4,9 @@ import create from "zustand";
 const useStore = create(set => ({
    messages: [],
    setMessages: data => set(state => ({ messages: [...state.messages, data] })),
+   isPopup: false,
+   openPopup: () => set({ isPopup: true }),
+   closePopup: () => set({ isPopup: false }),
 }));
 
 if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {

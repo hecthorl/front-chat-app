@@ -3,12 +3,12 @@ import Welcome from "../components/Welcome";
 import useUserAuth from "../hooks/useUserAuth";
 
 export default function Home() {
-   const { isUser } = useUserAuth();
+   // const { isUser } = useUserAuth();
 
    return (
       <>
          <Head>
-            <title>Home</title>
+            <title>Google-meet Clone</title>
          </Head>
          <Welcome />
       </>

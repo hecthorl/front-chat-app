@@ -1,8 +1,11 @@
 import { FaRegKeyboard } from "react-icons/fa";
 import LoginBtn from "./LoginBtn";
 import Header from "./Header";
+import useUserAuth from "../hooks/useUserAuth";
+import NewMeetBtn from "./NewMeetBtn";
 
 const Welcome = () => {
+   const { isUser } = useUserAuth();
    return (
       <div>
          <Header />
@@ -22,7 +25,7 @@ const Welcome = () => {
                   pueda usarlo en cualquier dispositivo.
                </p>
                <div className="flex pb-8 border-b border-gray-300 items-center gap-x-2">
-                  <LoginBtn />
+                  {isUser ? <NewMeetBtn /> : <LoginBtn />}
                   <span>o</span>
                   <div>
                      <div className="relative h-12">
