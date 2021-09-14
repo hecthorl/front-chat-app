@@ -10,9 +10,7 @@ import CurrentDate from "./CurrentDate";
 import Avatar from "./Avatar";
 
 const Header = () => {
-   const [session, isLoading] = useSession();
-
-   console.log(isLoading);
+   const [session] = useSession();
 
    return (
       <header className="flex justify-between px-4 py-1 text-[#5f6368]">
