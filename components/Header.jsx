@@ -5,9 +5,9 @@ import { IoChatboxEllipses } from "react-icons/io5";
 import { IoSettingsOutline } from "react-icons/io5";
 import { IoApps } from "react-icons/io5";
 import { useSession } from "next-auth/client";
-import SignoutBtn from "./SignoutBtn";
 import CurrentDate from "./CurrentDate";
 import Avatar from "./Avatar";
+import ProfilePopup from "./ProfilePopup";
 
 const Header = () => {
    const [session] = useSession();
@@ -59,7 +59,10 @@ const Header = () => {
                      <div>
                         <IoApps />
                      </div>
-                     <Avatar />
+                     <div className="relative">
+                        <Avatar />
+                        <ProfilePopup />
+                     </div>
                   </div>
                </>
             )}

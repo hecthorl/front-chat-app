@@ -7,6 +7,7 @@ const NewMeetBtn = () => {
    const isPopup = useStore(state => state.isPopup);
    const openPopup = useStore(state => state.openPopup);
    const closePopup = useStore(state => state.closePopup);
+
    document.addEventListener("click", closePopup);
    return (
       <div className="relative">

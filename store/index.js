@@ -7,6 +7,9 @@ const useStore = create(set => ({
    isPopup: false,
    openPopup: () => set({ isPopup: true }),
    closePopup: () => set({ isPopup: false }),
+   isProfileOpen: false,
+   closeProfile: () => set({ isProfileOpen: false }),
+   openProfile: () => set({ isProfileOpen: true }),
 }));
 
 if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
