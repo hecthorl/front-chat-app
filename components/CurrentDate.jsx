@@ -1,4 +1,4 @@
-import getTime from "../utils/getTime";
+import getTime from "utils/getTime";
 
 const CurrentDate = () => {
    const { minuteSecondAndHour, yearDayAndMonth } = getTime(

@@ -1,5 +1,5 @@
 import { AiOutlineVideoCameraAdd } from "react-icons/ai";
-import useStore from "../store";
+import useStore from "store";
 import OptionsBtn from "./OptionsBtn";
 
 const NewMeetBtn = () => {

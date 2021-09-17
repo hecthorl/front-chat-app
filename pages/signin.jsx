@@ -1,8 +1,8 @@
-import { getProviders, signIn } from "next-auth/client";
-import { useRouter } from "next/dist/client/router";
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 import { FcGoogle } from "react-icons/fc";
-import useUserAuth from "../hooks/useUserAuth";
+import { getProviders, signIn } from "next-auth/client";
+import useUserAuth from "hooks/useUserAuth";
 
 const SignIn = ({ providers }) => {
    const { isUser } = useUserAuth();

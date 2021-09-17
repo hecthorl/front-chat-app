@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import ScrollComponent from "react-scroll-to-bottom";
-import useStore from "../store";
-import getTime from "../utils/getTime";
+import useStore from "store";
+import getTime from "utils/getTime";
 
 const Chat = ({ socket, username, room }) => {
    const inputRef = useRef(null);

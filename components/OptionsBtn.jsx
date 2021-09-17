@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { RiChatNewLine, RiVideoAddLine } from "react-icons/ri";
-import useStore from "../store";
+import useStore from "store";
 
 const OptionsBtn = () => {
    const isPopup = useStore(state => state.isPopup);

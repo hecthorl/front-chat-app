@@ -1,5 +1,5 @@
-import useUserAuth from "../hooks/useUserAuth";
-import useStore from "../store";
+import useUserAuth from "hooks/useUserAuth";
+import useStore from "store";
 
 const Avatar = () => {
    const { userData } = useUserAuth();

@@ -1,8 +1,9 @@
-import { useRouter } from "next/dist/client/router";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
-import useUserAuth from "../hooks/useUserAuth";
-import App from "../components/App";
 import Head from "next/head";
+import App from "components/App";
+import useUserAuth from "hooks/useUserAuth";
+
 const Chat = () => {
    const { isUser } = useUserAuth();
    const { push } = useRouter();

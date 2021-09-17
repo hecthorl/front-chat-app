@@ -1,8 +1,8 @@
 import { FaRegKeyboard } from "react-icons/fa";
 import LoginBtn from "./LoginBtn";
 import Header from "./Header";
-import useUserAuth from "../hooks/useUserAuth";
 import NewMeetBtn from "./NewMeetBtn";
+import useUserAuth from "hooks/useUserAuth";
 
 const Welcome = () => {
    const { isUser } = useUserAuth();
