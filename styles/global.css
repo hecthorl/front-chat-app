@@ -15,4 +15,7 @@
    .on-break {
       word-break: break-word;
    }
+   .viewport-h {
+      height: calc(100vh - 79px);
+   }
 }

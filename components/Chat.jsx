@@ -32,10 +32,10 @@ const Chat = ({ socket, username, room }) => {
    };
 
    return (
-      <div className="max-w-[500px] w-full ">
+      <div className="border-l border-r border-gray-300">
          <ScrollComponent
             scrollViewClassName="flex flex-col scrollbar-thin scrollbar-thumb-blue-700 hover:scrollbar-thumb-blue-500"
-            className="h-96"
+            className="viewport-h"
          >
             {messages.map((item, id) => {
                const { username, date, msg, uid } = item;

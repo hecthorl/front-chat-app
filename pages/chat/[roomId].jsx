@@ -13,7 +13,7 @@ const RoomId = () => {
    const { roomId, userName, room_Name } = useStore(state => state.roomData);
 
    useEffect(() => {
-      if (!loading) {
+      if (loading) {
          !isUser && push("/");
       }
    }, []);
@@ -23,7 +23,11 @@ const RoomId = () => {
             <title>Room: {room_Name}</title>
          </Head>
          <Header />
-         <Chat socket={socket} username={userName} room={roomId} />
+         <div className="w-full border-t border-gray-300 grid grid-cols-tres">
+            <div></div>
+            <Chat socket={socket} username={userName} room={roomId} />
+            <div></div>
+         </div>
       </>
    );
 };
