@@ -3,6 +3,7 @@ import LoginBtn from "./LoginBtn";
 import Header from "./Header";
 import NewMeetBtn from "./NewMeetBtn";
 import useUserAuth from "hooks/useUserAuth";
+import SettingTab from "./SettingTab";
 
 const Welcome = () => {
    const { isUser } = useUserAuth();
@@ -47,6 +48,7 @@ const Welcome = () => {
             <div className="w-full max-w-[575px] p-5 rounded-md shadow-lg">
                <img src="/meet.png" alt="" />
             </div>
+            <SettingTab />
          </section>
       </div>
    );
