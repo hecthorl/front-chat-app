@@ -12,8 +12,6 @@ const Chat = ({ socket, username, room }) => {
       socket.on("msg recibido", setMessages);
    }, [socket]);
 
-   console.log("sadasd1");
-
    const msgSubmit = async event => {
       event.preventDefault();
       const msgTrimed = inputRef.current.value.trim();
