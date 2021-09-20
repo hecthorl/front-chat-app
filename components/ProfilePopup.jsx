@@ -14,7 +14,7 @@ const ProfilePopup = () => {
    return (
       <div
          onClick={e => e.stopPropagation()}
-         className="border border-gray-300 absolute flex flex-col gap-y-3 items-center justify-center w-[356px] h-[400px] right-0 bg-white rounded shadow-lg"
+         className="border z-10 border-gray-300 absolute flex flex-col gap-y-3 items-center justify-center w-[356px] h-[400px] right-0 bg-white rounded shadow-lg"
       >
          <img className="w-20 rounded-full" src={image} alt="user profile" />
          <p className="">{name}</p>

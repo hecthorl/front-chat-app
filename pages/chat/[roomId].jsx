@@ -12,6 +12,8 @@ const RoomId = () => {
    const socket = useStore(state => state.socket);
    const { roomId, userName, room_Name } = useStore(state => state.roomData);
 
+   console.log({ isUser, loading });
+
    useEffect(() => {
       if (loading) {
          !isUser && push("/");
@@ -25,7 +27,7 @@ const RoomId = () => {
          <Header />
          <div className="w-full border-t border-gray-300 grid grid-cols-tres">
             <div></div>
-            <Chat socket={socket} username={userName} room={roomId} />
+            {loading ? <p>Cargando</p> : <Chat socket={socket} username={userName} room={roomId} /> }
             <div></div>
          </div>
       </>

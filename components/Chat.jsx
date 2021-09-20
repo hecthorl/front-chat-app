@@ -1,3 +1,4 @@
+import useUserAuth from "hooks/useUserAuth";
 import { useEffect, useRef } from "react";
 import ScrollComponent from "react-scroll-to-bottom";
 import useStore from "store";
@@ -5,6 +6,7 @@ import getTime from "utils/getTime";
 
 const Chat = ({ socket, username, room }) => {
    const inputRef = useRef(null);
+   const { userData } = useUserAuth();
    const setMessages = useStore(state => state.setMessages);
    const messages = useStore(state => state.messages);
 
@@ -32,35 +34,38 @@ const Chat = ({ socket, username, room }) => {
    };
 
    return (
-      <div className="border-l border-r border-gray-300">
+      <div className="border-l border-r border-gray-300 pb-2">
          <ScrollComponent
-            scrollViewClassName="flex flex-col scrollbar-thin scrollbar-thumb-blue-700 hover:scrollbar-thumb-blue-500"
+            scrollViewClassName="flex flex-col scrollbar-thin scrollbar-thumb-blue-700 hover:scrollbar-thumb-blue-500 gap-y-5"
             className="viewport-h"
          >
-            {messages.map((item, id) => {
-               const { username, date, msg, uid } = item;
+            {messages.map(({ date, msg }, id) => {
                const { minuteSecondAndHour, yearDayAndMonth } = getTime(date);
-               const isMe = uid === socket.id ? "bg-pink-600" : "bg-yellow-400";
-               const isContainer = uid === socket.id && "self-end";
+               // const isMe = uid === socket.id ? "bg-pink-600" : "bg-yellow-400";
+               // const isContainer = uid === socket.id && "self-end";
                return (
-                  <div
-                     className={isContainer + " max-w-[fit-content] mb-3"}
-                     key={id}
-                  >
-                     <div className={isMe + " rounded-md p-1"}>
+                  <div className="w-full flex gap-x-3 pl-2 mt-2" key={id}>
+                     <img
+                        src={userData.user.image}
+                        alt="sadasd"
+                        className="rounded-full w-11 h-11"
+                     />
+                     <div>
+                        <div className="flex items-center gap-x-3">
+                           <p className="font-semibold">{username}</p>
+                           <small className="text-gray-400">
+                              {yearDayAndMonth}
+                              <span className="mx-2">·</span>
+                              {minuteSecondAndHour}
+                           </small>
+                        </div>
                         <p className="on-break">{msg}</p>
-                        <div>{username}</div>
                      </div>
-                     <small className="text-white">
-                        {yearDayAndMonth}
-                        <span className="mx-2">·</span>
-                        {minuteSecondAndHour}
-                     </small>
                   </div>
                );
             })}
          </ScrollComponent>
-         <form onSubmit={msgSubmit}>
+         <form onSubmit={msgSubmit} className="mx-2">
             <input
                autoComplete="off"
                autoFocus
@@ -68,7 +73,7 @@ const Chat = ({ socket, username, room }) => {
                type="text"
                placeholder="Type something and then press Enter"
                name="message-text"
-               className="w-full p-1 rounded-md bg-white bg-opacity-75"
+               className="w-full text-black px-3 py-1 rounded-md border border-blue-600"
             />
          </form>
       </div>
