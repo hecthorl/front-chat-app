@@ -1,4 +1,4 @@
-import JoinroomBtn from "./JoinroomBtn";
+import JoinroomBtn from "components/buttons/JoinroomBtn";
 
 const RoomItem = ({ room_name }) => {
    return (

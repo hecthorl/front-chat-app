@@ -1,9 +1,9 @@
 import { FaRegKeyboard } from "react-icons/fa";
-import LoginBtn from "./LoginBtn";
-import Header from "./Header";
-import NewMeetBtn from "./NewMeetBtn";
 import useUserAuth from "hooks/useUserAuth";
-import SettingTab from "./SettingTab";
+import Header from "./Header";
+import NewMeetBtn from "./buttons/NewMeetBtn";
+import LoginBtn from "./buttons/LoginBtn";
+import SettingsTab from "./SettingsTab";
 
 const Welcome = () => {
    const { isUser } = useUserAuth();
@@ -42,13 +42,13 @@ const Welcome = () => {
                </div>
                <div className="mt-8 text-lg space-x-1">
                   <span>¿No tienes una cuenta?</span>
-                  <a href="">Regístrate gratis</a>
+                  <a href="/signin">Regístrate gratis</a>
                </div>
             </div>
             <div className="w-full max-w-[575px] p-5 rounded-md shadow-lg">
-               <img src="/meet.png" alt="" />
+               <img src="/meet.png" alt="dummy" />
             </div>
-            <SettingTab />
+            <SettingsTab />
          </section>
       </div>
    );

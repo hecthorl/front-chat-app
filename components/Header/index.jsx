@@ -1,10 +1,10 @@
-import LoginBtn from "./LoginBtn";
 import { MdInput } from "react-icons/md";
 import { VscQuestion } from "react-icons/vsc";
 import { IoChatboxEllipses } from "react-icons/io5";
 import { IoSettingsOutline } from "react-icons/io5";
 import { IoApps } from "react-icons/io5";
 import { useSession } from "next-auth/client";
+import LoginBtn from "components/buttons/LoginBtn";
 import CurrentDate from "./CurrentDate";
 import Avatar from "./Avatar";
 import ProfilePopup from "./ProfilePopup";
@@ -28,11 +28,11 @@ const Header = () => {
             )}
          </div>
          <div className="flex gap-x-3 items-center">
-            {/* <a href="" className="font-semibold">
-                  Inciar sesión
-               </a> */}
             {!session ? (
                <>
+                  <a href="/signin" className="font-semibold">
+                     Inciar sesión
+                  </a>
                   <button className="flex gap-x-3 border border-gray-300 hover:border-blue-600 px-5 py-3 items-center rounded">
                      <MdInput className="text-xl text-blue-600" />
                      <span className="text-blue-600 font-bold">

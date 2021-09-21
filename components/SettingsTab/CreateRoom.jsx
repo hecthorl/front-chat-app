@@ -1,5 +1,5 @@
+import NewRoomBtn from "components/buttons/NewRoomBtn";
 import Input from "./Input";
-import NewRoomBtn from "./NewRoomBtn";
 import Toggle from "./Toggle";
 
 const CreateRoom = () => {

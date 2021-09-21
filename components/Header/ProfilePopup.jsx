@@ -1,6 +1,6 @@
 import useUserAuth from "hooks/useUserAuth";
 import useStore from "store";
-import SignoutBtn from "./SignoutBtn";
+import SignoutBtn from "../buttons/SignoutBtn";
 
 const ProfilePopup = () => {
    const {

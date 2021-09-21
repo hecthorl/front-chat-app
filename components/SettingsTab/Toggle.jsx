@@ -7,7 +7,7 @@ const Toggle = () => {
    return (
       <Switch.Group>
          <div className="flex items-center">
-            <Switch.Label className="mr-4">Public Room</Switch.Label>
+            <Switch.Label className="mr-4">Private Room</Switch.Label>
             <Switch
                checked={toggleInput}
                onChange={setToggleInput}
