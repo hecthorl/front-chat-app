@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import { MdInput } from "react-icons/md";
 import { VscQuestion } from "react-icons/vsc";
 import { IoChatboxEllipses } from "react-icons/io5";
@@ -5,9 +6,10 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { IoApps } from "react-icons/io5";
 import { useSession } from "next-auth/client";
 import LoginBtn from "components/buttons/LoginBtn";
-import CurrentDate from "./CurrentDate";
 import Avatar from "./Avatar";
 import ProfilePopup from "./ProfilePopup";
+
+const CurrentDate = dynamic(() => import("./CurrentDate"), { ssr: false });
 
 const Header = () => {
    const [session] = useSession();

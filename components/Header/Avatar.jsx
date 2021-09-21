@@ -7,7 +7,9 @@ const Avatar = () => {
    const openProfile = useStore(state => state.openProfile);
    const closeProfile = useStore(state => state.closeProfile);
 
-   document.addEventListener("click", closeProfile);
+   if (typeof window !== "undefined") {
+      document.addEventListener("click", closeProfile);
+   }
 
    return (
       <button

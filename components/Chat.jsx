@@ -1,12 +1,15 @@
-import useUserAuth from "hooks/useUserAuth";
+import dynamic from "next/dynamic";
 import { useEffect, useRef } from "react";
-import ScrollComponent from "react-scroll-to-bottom";
 import useStore from "store";
-import getTime from "utils/getTime";
+
+const ChatTimleline = dynamic(() => import("./ChatTimleline"), { ssr: false });
+const ScrollComponent = dynamic(() => import("react-scroll-to-bottom"), {
+   ssr: false,
+   loading: () => <div className="viewport-h"></div>,
+});
 
 const Chat = ({ socket, username, room }) => {
    const inputRef = useRef(null);
-   const { userData } = useUserAuth();
    const setMessages = useStore(state => state.setMessages);
    const messages = useStore(state => state.messages);
 
@@ -39,31 +42,7 @@ const Chat = ({ socket, username, room }) => {
             scrollViewClassName="flex flex-col scrollbar-thin scrollbar-thumb-blue-700 hover:scrollbar-thumb-blue-500 gap-y-5"
             className="viewport-h"
          >
-            {messages.map(({ date, msg }, id) => {
-               const { minuteSecondAndHour, yearDayAndMonth } = getTime(date);
-               // const isMe = uid === socket.id ? "bg-pink-600" : "bg-yellow-400";
-               // const isContainer = uid === socket.id && "self-end";
-               return (
-                  <div className="w-full flex gap-x-3 pl-2 mt-2" key={id}>
-                     <img
-                        src={userData.user.image}
-                        alt="sadasd"
-                        className="rounded-full w-11 h-11"
-                     />
-                     <div>
-                        <div className="flex items-center gap-x-3">
-                           <p className="font-semibold">{username}</p>
-                           <small className="text-gray-400">
-                              {yearDayAndMonth}
-                              <span className="mx-2">·</span>
-                              {minuteSecondAndHour}
-                           </small>
-                        </div>
-                        <p className="on-break">{msg}</p>
-                     </div>
-                  </div>
-               );
-            })}
+            <ChatTimleline messages={messages} />
          </ScrollComponent>
          <form onSubmit={msgSubmit} className="mx-2">
             <input

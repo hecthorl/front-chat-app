@@ -1,16 +1,8 @@
-import { useEffect } from "react";
-import { useRouter } from "next/router";
 import { FcGoogle } from "react-icons/fc";
 import { getProviders, signIn } from "next-auth/client";
-import useUserAuth from "hooks/useUserAuth";
 import Head from "next/head";
 
 const SignIn = ({ providers }) => {
-   const { isUser } = useUserAuth();
-   const { replace } = useRouter();
-   useEffect(() => {
-      if (isUser) replace("/");
-   }, [isUser]);
    return (
       <>
          <Head>
@@ -22,7 +14,12 @@ const SignIn = ({ providers }) => {
                <div key={provider.name}>
                   <button
                      className="flex text-xl items-center gap-x-2 border border-black hover:border-transparent hover:bg-black hover:text-white p-2 rounded transition-colors"
-                     onClick={() => signIn(provider.id)}
+                     onClick={() =>
+                        signIn(provider.id, {
+                           redirect: true,
+                           callbackUrl: "/",
+                        })
+                     }
                   >
                      <FcGoogle />
                      <span>Inicia sesión con {provider.name}</span>
