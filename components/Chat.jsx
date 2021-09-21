@@ -1,8 +1,8 @@
 import dynamic from "next/dynamic";
 import { useEffect, useRef } from "react";
 import useStore from "store";
+import ChatTimleline from "./ChatTimleline";
 
-const ChatTimleline = dynamic(() => import("./ChatTimleline"), { ssr: false });
 const ScrollComponent = dynamic(() => import("react-scroll-to-bottom"), {
    ssr: false,
    loading: () => <div className="viewport-h"></div>,

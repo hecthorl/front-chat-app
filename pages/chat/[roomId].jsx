@@ -5,6 +5,7 @@ import Head from "next/head";
 import Header from "components/Header";
 import { getSession } from "next-auth/client";
 import Chat from "components/Chat";
+import { useEffect } from "react";
 
 const RoomId = () => {
    const { push } = useRouter();
@@ -12,7 +13,9 @@ const RoomId = () => {
    const socket = useStore(state => state.socket);
    const { roomId, userName, room_Name } = useStore(state => state.roomData);
 
-   if (!isUser) return push("/");
+   useEffect(() => {
+      if (!isUser) push("/");
+   }, []);
    return (
       <>
          <Head>
