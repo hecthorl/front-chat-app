@@ -45,8 +45,8 @@ const Header = () => {
                </>
             ) : (
                <>
-                  <CurrentDate />
-                  <div className="flex text-xl gap-x-2 mx-2">
+                  <div className="hidden sm:flex items-center text-xl gap-x-3 mx-4">
+                     <CurrentDate />
                      <div>
                         <VscQuestion />
                      </div>
@@ -58,10 +58,8 @@ const Header = () => {
                      </div>
                   </div>
                   <div className="flex items-center text-xl gap-x-4">
-                     <div>
-                        <IoApps />
-                     </div>
-                     <div className="relative">
+                     <IoApps />
+                     <div className="relative flex items-center">
                         <Avatar />
                         <ProfilePopup />
                      </div>
