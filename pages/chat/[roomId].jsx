@@ -22,10 +22,10 @@ const RoomId = () => {
             <title>Room: {room_Name}</title>
          </Head>
          <Header />
-         <div className="w-full border-t border-gray-300 grid grid-cols-tres">
-            <div></div>
+         <div className="w-full border-t border-gray-300 grid grid-cols-1 md:grid-cols-tres">
+            <div className="hidden md:block"></div>
             <Chat socket={socket} username={userName} room={roomId} />
-            <div></div>
+            <div className="hidden md:block"></div>
          </div>
       </>
    );

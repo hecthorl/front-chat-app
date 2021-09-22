@@ -15,7 +15,7 @@ const SettingsTab = () => {
       >
          <div
             onClick={e => e.stopPropagation()}
-            className="relative h-full max-h-[400px] flex items-center justify-center bg-white max-w-[700px] w-full border border-gray-300 rounded-xl"
+            className="flex-col relative py-4 h-[fit-content] min-h-[400px] flex items-center justify-center md:flex-row bg-white max-w-[700px] w-full border border-gray-300 rounded-xl"
          >
             <button
                onClick={closeSettings}
@@ -23,7 +23,7 @@ const SettingsTab = () => {
             >
                <MdClose />
             </button>
-            <div className="w-1/2 px-2">
+            <div className="md:w-1/2 w-full px-2">
                <h5 className="py-2 text-lg text-center">Salas disponibles</h5>
                <div className="divide-y h-[250px] overflow-y-auto text-center">
                   <RoomItem room_name="Sass" />
@@ -34,6 +34,7 @@ const SettingsTab = () => {
                   <RoomItem room_name="Sass" />
                </div>
             </div>
+            <div className="h-[1px] w-full bg-gray-300 my-2 md:hidden"></div>
             <CreateRoom />
          </div>
       </div>
