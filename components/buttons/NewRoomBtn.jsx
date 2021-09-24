@@ -6,11 +6,11 @@ import useStore from "store";
 
 const NewRoomBtn = () => {
    const toggleInput = useStore(state => state.toggleInput);
-   const socket = useStore(state => state.socket);
+   // const socket = useStore(state => state.socket);
    const input = useStore(state => state.input);
    const setRoomData = useStore(state => state.setRoomData);
-   const romNameTrimed = input.trim();
-   const isDisabled = !romNameTrimed.length;
+   const roomNameTrimed = input.trim();
+   const isDisabled = !roomNameTrimed.length;
    const { userData } = useUserAuth();
    const { push } = useRouter();
 
@@ -25,7 +25,7 @@ const NewRoomBtn = () => {
          body: JSON.stringify(room),
          method: "POST",
       });
-      socket.emit("join_channel", room);
+      // socket.emit("join_channel", room);
       push(`chat/${room.roomId}`);
       setRoomData(room);
    };

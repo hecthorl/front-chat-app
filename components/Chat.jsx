@@ -1,3 +1,4 @@
+import useUserAuth from "hooks/useUserAuth";
 import dynamic from "next/dynamic";
 import { useEffect, useRef } from "react";
 import useStore from "store";
@@ -8,10 +9,12 @@ const ScrollComponent = dynamic(() => import("react-scroll-to-bottom"), {
    loading: () => <div className="viewport-h"></div>,
 });
 
-const Chat = ({ socket, username, room }) => {
+const Chat = ({ roomId }) => {
    const inputRef = useRef(null);
+   const { userData } = useUserAuth();
    const setMessages = useStore(state => state.setMessages);
    const messages = useStore(state => state.messages);
+   const socket = useStore(state => state.socket);
 
    useEffect(() => {
       socket.on("msg recibido", setMessages);
@@ -23,9 +26,9 @@ const Chat = ({ socket, username, room }) => {
       if (!msgTrimed) return null;
 
       const msgData = {
-         username,
+         username: userData.user.name,
          uid: socket.id,
-         room,
+         roomId,
          date: new Date().getTime(),
          msg: msgTrimed,
       };

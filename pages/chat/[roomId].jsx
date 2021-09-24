@@ -16,6 +16,7 @@ const RoomId = ({ roomInfo }) => {
 
    useEffect(() => {
       if (!isUser) push("/");
+      socket.emit("join_channel", roomInfo);
    }, []);
    return (
       <>
