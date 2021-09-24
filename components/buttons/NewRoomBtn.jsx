@@ -24,6 +24,9 @@ const NewRoomBtn = () => {
       fetch("/api/roominfo", {
          body: JSON.stringify(room),
          method: "POST",
+         headers: {
+            "Content-Type": "text/html",
+         },
       });
       // socket.emit("join_channel", room);
       push(`chat/${room.roomId}`);

@@ -12,7 +12,7 @@ const RoomId = ({ roomInfo }) => {
 
    const { isUser } = useUserAuth();
    const socket = useStore(state => state.socket);
-   const { roomId, userName, roomName } = roomInfo;
+   const { roomId, roomName } = roomInfo;
 
    useEffect(() => {
       if (!isUser) push("/");
@@ -26,7 +26,7 @@ const RoomId = ({ roomInfo }) => {
          <Header />
          <div className="w-full border-t border-gray-300 grid grid-cols-1 md:grid-cols-tres">
             <div className="hidden md:block"></div>
-            <Chat socket={socket} username={userName} room={roomId} />
+            <Chat room={roomId} />
             <div className="hidden md:block"></div>
          </div>
       </>
