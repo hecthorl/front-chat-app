@@ -2,14 +2,11 @@ import useUserAuth from "hooks/useUserAuth";
 import { nanoid } from "nanoid";
 import { useRouter } from "next/router";
 import { BsPlusSquare } from "react-icons/bs";
-import { io } from "socket.io-client";
 import useStore from "store";
-
-const url = process.env.NEXT_PUBLIC_URL_BACKEND || "http://localhost:4000";
-const socket = io(url);
 
 const NewRoomBtn = () => {
    const toggleInput = useStore(state => state.toggleInput);
+   const socket = useStore(state => state.socket);
    const input = useStore(state => state.input);
    const setRoomData = useStore(state => state.setRoomData);
    const romNameTrimed = input.trim();
@@ -20,10 +17,14 @@ const NewRoomBtn = () => {
    const handleClick = () => {
       const room = {
          isPrivate: toggleInput,
-         room_Name: input,
+         roomName: input,
          roomId: nanoid(),
          userName: userData.user.name,
       };
+      fetch("/api/roominfo", {
+         body: JSON.stringify(room),
+         method: "POST",
+      });
       socket.emit("join_channel", room);
       push(`chat/${room.roomId}`);
       setRoomData(room);

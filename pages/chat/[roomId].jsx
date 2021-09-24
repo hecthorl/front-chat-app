@@ -7,11 +7,12 @@ import { getSession } from "next-auth/client";
 import Chat from "components/Chat";
 import { useEffect } from "react";
 
-const RoomId = () => {
+const RoomId = ({ roomInfo }) => {
    const { push } = useRouter();
+
    const { isUser } = useUserAuth();
    const socket = useStore(state => state.socket);
-   const { roomId, userName, room_Name } = useStore(state => state.roomData);
+   const { roomId, userName, roomName } = roomInfo;
 
    useEffect(() => {
       if (!isUser) push("/");
@@ -19,7 +20,7 @@ const RoomId = () => {
    return (
       <>
          <Head>
-            <title>Room: {room_Name}</title>
+            <title>Room: {roomName}</title>
          </Head>
          <Header />
          <div className="w-full border-t border-gray-300 grid grid-cols-1 md:grid-cols-tres">
@@ -34,8 +35,13 @@ const RoomId = () => {
 export default RoomId;
 
 export const getServerSideProps = async context => {
+   const { roomId } = context.params;
    const session = await getSession(context);
+   const res = await fetch(
+      `http://localhost:3000/api/roominfo?roomId=${roomId}`
+   );
+   const [roomInfo] = await res.json();
    return {
-      props: { session },
+      props: { session, roomInfo },
    };
 };
