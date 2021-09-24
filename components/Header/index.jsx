@@ -23,25 +23,33 @@ const Header = () => {
             </a>
             {!session && (
                <>
-                  <a href="">Resumen</a>
-                  <a href="">Cómo funciona</a>
-                  <a href="">Planes y precios</a>
+                  <a href="" className="hidden">
+                     Resumen
+                  </a>
+                  <a href="" className="hidden">
+                     Cómo funciona
+                  </a>
+                  <a href="" className="hidden">
+                     Planes y precios
+                  </a>
                </>
             )}
          </div>
          <div className="flex gap-x-3 items-center">
             {!session ? (
                <>
-                  <a href="/signin" className="font-semibold">
+                  <a href="/signin" className="hidden font-semibold">
                      Inciar sesión
                   </a>
-                  <button className="flex gap-x-3 border border-gray-300 hover:border-blue-600 px-5 py-3 items-center rounded">
+                  <button className="hidden md:flex gap-x-3 border border-gray-300 hover:border-blue-600 px-5 py-3 items-center rounded">
                      <MdInput className="text-xl text-blue-600" />
-                     <span className="text-blue-600 font-bold">
+                     <span className="hidden text-blue-600 font-bold">
                         Unirse a una reunión
                      </span>
                   </button>
-                  <LoginBtn />
+                  <div className="hidden md:block">
+                     <LoginBtn />
+                  </div>
                </>
             ) : (
                <>
