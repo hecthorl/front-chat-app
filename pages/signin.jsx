@@ -7,6 +7,7 @@ const SignIn = ({ providers }) => {
       <>
          <Head>
             <title>SignIn</title>
+            <link rel="shortcut icon" href="/fav.ico" type="image/x-icon" />
          </Head>
          <div className="flex flex-col justify-center items-center h-screen w-screen">
             <h1 className="mb-5 text-3xl">Google meet - Clone</h1>

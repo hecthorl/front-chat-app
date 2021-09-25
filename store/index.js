@@ -1,8 +1,8 @@
 import { mountStoreDevtool } from "simple-zustand-devtools";
 import { io } from "socket.io-client";
 import create from "zustand";
-const url = process.env.NEXT_PUBLIC_URL_BACKEND || "http://localhost:4000";
-// const url = "http://localhost:4000";
+// const url = process.env.NEXT_PUBLIC_URL_BACKEND
+const url = "http://localhost:4000";
 
 const useStore = create(set => ({
    messages: [],

@@ -23,13 +23,13 @@ const Header = () => {
             </a>
             {!session && (
                <>
-                  <a href="" className="hidden">
+                  <a href="" className="hidden md:block">
                      Resumen
                   </a>
-                  <a href="" className="hidden">
+                  <a href="/como_funciona" className="hidden md:block">
                      Cómo funciona
                   </a>
-                  <a href="" className="hidden">
+                  <a href="" className="hidden md:block">
                      Planes y precios
                   </a>
                </>
@@ -43,7 +43,7 @@ const Header = () => {
                   </a>
                   <button className="hidden md:flex gap-x-3 border border-gray-300 hover:border-blue-600 px-5 py-3 items-center rounded">
                      <MdInput className="text-xl text-blue-600" />
-                     <span className="hidden text-blue-600 font-bold">
+                     <span className="text-blue-600 font-bold">
                         Unirse a una reunión
                      </span>
                   </button>

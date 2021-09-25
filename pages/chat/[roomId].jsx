@@ -22,6 +22,7 @@ const RoomId = ({ roomInfo }) => {
       <>
          <Head>
             <title>Room: {roomName}</title>
+            <link rel="shortcut icon" href="/fav.ico" type="image/x-icon" />
          </Head>
          <Header />
          <div className="w-full border-t border-gray-300 grid grid-cols-1 md:grid-cols-tres">
