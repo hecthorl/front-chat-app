@@ -7,12 +7,7 @@ const ComoFunciona = () => {
       <>
          <LHead title="Cómo funciona" />
          <Header />
-         <div className="flex">
-            <h1>dasds</h1>
-            <div className="w-20 bg-blue-600 p-1">
-               <IconBrand />
-            </div>
-         </div>
+         <div className="h-full">xdxdxd</div>
       </>
    );
 };

@@ -12,7 +12,7 @@ const enlaces = [
    },
    {
       title: "Resumen",
-      href: "/",
+      href: "/resumen",
    },
 ];
 
