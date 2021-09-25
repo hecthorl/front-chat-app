@@ -1,14 +1,11 @@
 import Header from "components/Header";
 import IconBrand from "components/IconBrand";
-import Head from "next/head";
+import LHead from "components/LHead";
 
 const ComoFunciona = () => {
    return (
       <>
-         <Head>
-            <title>Cómo funciona</title>
-            <link rel="shortcut icon" href="/fav.ico" type="image/x-icon" />
-         </Head>
+         <LHead title="Cómo funciona" />
          <Header />
          <div className="flex">
             <h1>dasds</h1>

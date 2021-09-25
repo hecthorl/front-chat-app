@@ -1,13 +1,10 @@
-import Head from "next/head";
+import LHead from "components/LHead";
 import Welcome from "components/Welcome";
 
 export default function Home() {
    return (
       <>
-         <Head>
-            <title>Google-meet Clone</title>
-            <link rel="shortcut icon" href="/fav.ico" type="image/x-icon" />
-         </Head>
+         <LHead title="Goole-meet Clone" />
          <Welcome />
       </>
    );

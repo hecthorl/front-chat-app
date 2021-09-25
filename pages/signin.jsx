@@ -1,14 +1,11 @@
 import { FcGoogle } from "react-icons/fc";
 import { getProviders, signIn } from "next-auth/client";
-import Head from "next/head";
+import LHead from "components/LHead";
 
 const SignIn = ({ providers }) => {
    return (
       <>
-         <Head>
-            <title>SignIn</title>
-            <link rel="shortcut icon" href="/fav.ico" type="image/x-icon" />
-         </Head>
+         <LHead title="Sign In" />
          <div className="flex flex-col justify-center items-center h-screen w-screen">
             <h1 className="mb-5 text-3xl">Google meet - Clone</h1>
             {Object.values(providers).map(provider => (

@@ -8,6 +8,8 @@ import { useSession } from "next-auth/client";
 import LoginBtn from "components/buttons/LoginBtn";
 import Avatar from "./Avatar";
 import ProfilePopup from "./ProfilePopup";
+import IconBrand from "components/IconBrand";
+import Links from "components/Links";
 
 const CurrentDate = dynamic(() => import("./CurrentDate"), { ssr: false });
 
@@ -18,22 +20,10 @@ const Header = () => {
       <header className="flex justify-between px-4 py-1 text-[#5f6368]">
          <div className="flex gap-x-7 text-lg items-center">
             <a href="/" className="flex">
-               <img src="/meetIcon.png" alt="icon" className="w-8" />
+               <IconBrand />
                <span className="ml-2 text-xl">Google Meet</span>
             </a>
-            {!session && (
-               <>
-                  <a href="" className="hidden md:block">
-                     Resumen
-                  </a>
-                  <a href="/como_funciona" className="hidden md:block">
-                     Cómo funciona
-                  </a>
-                  <a href="" className="hidden md:block">
-                     Planes y precios
-                  </a>
-               </>
-            )}
+            <Links />
          </div>
          <div className="flex gap-x-3 items-center">
             {!session ? (

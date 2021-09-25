@@ -1,11 +1,11 @@
 import useUserAuth from "hooks/useUserAuth";
 import { useRouter } from "next/router";
 import useStore from "store";
-import Head from "next/head";
 import Header from "components/Header";
 import { getSession } from "next-auth/client";
 import Chat from "components/Chat";
 import { useEffect } from "react";
+import LHead from "components/LHead";
 
 const RoomId = ({ roomInfo }) => {
    const { push } = useRouter();
@@ -20,10 +20,7 @@ const RoomId = ({ roomInfo }) => {
    }, []);
    return (
       <>
-         <Head>
-            <title>Room: {roomName}</title>
-            <link rel="shortcut icon" href="/fav.ico" type="image/x-icon" />
-         </Head>
+         <LHead title={`Room: ${roomName}`} />
          <Header />
          <div className="w-full border-t border-gray-300 grid grid-cols-1 md:grid-cols-tres">
             <div className="hidden md:block"></div>
