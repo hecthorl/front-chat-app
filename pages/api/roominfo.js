@@ -15,12 +15,15 @@ const saveDB = (path, dataIncoming) => {
 export default async function (req, res) {
    if (req.method === "POST") {
       const parsedFromBody = JSON.parse(req.body);
-      saveDB("./lalaal.json", parsedFromBody);
-      return res.status(203);
+      // el path ./lalaal.json no hace referencia a esto: /front/pages/roominfo.js
+      // sino al fichero raiz: /front === ./
+
+      saveDB(`${process.cwd()}/lalaal.json`, parsedFromBody);
+      return res.status(201).end();
    }
    if (req.method === "GET") {
       const { roomId } = req.query;
       const roomData = DBRooms.filter(item => item.roomId === roomId);
-      return res.status(200).send(roomData);
+      return res.status(200).send(roomData).end();
    }
 }

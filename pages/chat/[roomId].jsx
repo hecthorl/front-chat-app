@@ -36,10 +36,7 @@ export default RoomId;
 export const getServerSideProps = async context => {
    const { roomId } = context.params;
    const session = await getSession(context);
-   // const baseUrlProd = 'https://front-chat-app.vercel.app'
-   // const baseUrlDev = 'http://localhost:3000'
    const baseUrl = process.env.BASE_URL;
-
    const res = await fetch(`${baseUrl}/api/roominfo?roomId=${roomId}`).catch(
       console.log
    );
