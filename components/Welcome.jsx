@@ -8,10 +8,10 @@ import SettingsTab from "./SettingsTab";
 const Welcome = () => {
    const { isUser } = useUserAuth();
    return (
-      <div>
+      <>
          <Header />
          <section
-            style={{ minHeight: "calc(100vh - 58px)" }}
+            style={{ minHeight: "calc(100vh - 69px)" }}
             className="flex px-4 items-center flex-col md:flex-row justify-center gap-x-10"
          >
             <div className="max-w-[616px]">
@@ -34,7 +34,10 @@ const Welcome = () => {
                            className="border border-gray-300 h-full focus:border-gray-600 pl-12 rounded"
                            placeholder="Código de reunión"
                         />
-                        <FaRegKeyboard className="absolute top-3 text-2xl left-3" />
+                        <FaRegKeyboard
+                           aria-hidden={true}
+                           className="absolute top-3 text-2xl left-3"
+                        />
                      </div>
                   </div>
                   <button>unirse</button>
@@ -49,7 +52,7 @@ const Welcome = () => {
             </div>
             <SettingsTab />
          </section>
-      </div>
+      </>
    );
 };
 
