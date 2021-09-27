@@ -6,7 +6,6 @@ import useStore from "store";
 
 const NewRoomBtn = () => {
    const toggleInput = useStore(state => state.toggleInput);
-   // const socket = useStore(state => state.socket);
    const input = useStore(state => state.input);
    const setRoomData = useStore(state => state.setRoomData);
    const roomNameTrimed = input.trim();
@@ -26,10 +25,10 @@ const NewRoomBtn = () => {
             body: JSON.stringify(room),
             method: "POST",
             headers: {
-               "Content-Type": "text/html",
+               "Content-Type": "application/json; charset=UTF-8",
             },
          }).then(algo => {
-            console.log({ statys: algo.status });
+            console.log({ status: algo?.status });
          });
          push(`chat/${room.roomId}`);
          setRoomData(room);

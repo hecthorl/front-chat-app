@@ -37,9 +37,9 @@ export const getServerSideProps = async context => {
    const session = await getSession(context);
    const BASE_URL = process.env.BASE_URL;
    const res = await fetch(`${BASE_URL}/api/roominfo?roomId=${roomId}`);
-   const { roomData } = await res.json();
+   const data = await res.json();
 
    return {
-      props: { session, roomData },
+      props: { session, roomData: data.roomData },
    };
 };
