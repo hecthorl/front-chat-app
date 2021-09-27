@@ -7,16 +7,15 @@ import Chat from "components/Chat";
 import { useEffect } from "react";
 import LHead from "components/LHead";
 
-const RoomId = ({ roomInfo }) => {
+const RoomId = ({ roomData }) => {
    const { push } = useRouter();
-
    const { isUser } = useUserAuth();
    const socket = useStore(state => state.socket);
-   const { roomId, roomName } = roomInfo;
+   const { roomId, roomName } = roomData;
 
    useEffect(() => {
       if (!isUser) push("/");
-      socket.emit("join_channel", roomInfo);
+      socket.emit("join_channel", roomId);
    }, []);
    return (
       <>
@@ -36,12 +35,11 @@ export default RoomId;
 export const getServerSideProps = async context => {
    const { roomId } = context.params;
    const session = await getSession(context);
-   const baseUrl = process.env.BASE_URL;
-   const res = await fetch(`${baseUrl}/api/roominfo?roomId=${roomId}`).catch(
-      console.log
-   );
-   const [roomInfo] = await res.json();
+   const BASE_URL = process.env.BASE_URL;
+   const res = await fetch(`${BASE_URL}/api/roominfo?roomId=${roomId}`);
+   const { roomData } = await res.json();
+
    return {
-      props: { session, roomInfo },
+      props: { session, roomData },
    };
 };

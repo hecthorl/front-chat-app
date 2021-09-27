@@ -15,22 +15,27 @@ const NewRoomBtn = () => {
    const { push } = useRouter();
 
    const handleClick = () => {
-      const room = {
-         isPrivate: toggleInput,
-         roomName: input,
-         roomId: nanoid(),
-         userName: userData.user.name,
-      };
-      fetch("/api/roominfo", {
-         body: JSON.stringify(room),
-         method: "POST",
-         headers: {
-            "Content-Type": "text/html",
-         },
-      });
-      // socket.emit("join_channel", room);
-      push(`chat/${room.roomId}`);
-      setRoomData(room);
+      try {
+         const room = {
+            isPrivate: toggleInput,
+            roomName: input,
+            roomId: nanoid(),
+            userName: userData.user.name,
+         };
+         fetch("/api/roominfo", {
+            body: JSON.stringify(room),
+            method: "POST",
+            headers: {
+               "Content-Type": "text/html",
+            },
+         }).then(algo => {
+            console.log({ statys: algo.status });
+         });
+         push(`chat/${room.roomId}`);
+         setRoomData(room);
+      } catch (err) {
+         console.log(err);
+      }
    };
 
    return (
