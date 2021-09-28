@@ -2,6 +2,7 @@ import { MdClose } from "react-icons/md";
 import useStore from "store";
 import RoomItem from "./RoomItem";
 import CreateRoom from "./CreateRoom";
+import { Toaster } from "react-hot-toast";
 
 const SettingsTab = () => {
    const isSettingsOpen = useStore(state => state.isSettingsOpen);
@@ -17,6 +18,7 @@ const SettingsTab = () => {
             onClick={e => e.stopPropagation()}
             className="flex-col relative py-4 h-[fit-content] min-h-[400px] flex items-center justify-center md:flex-row bg-white max-w-[700px] w-full border border-gray-300 rounded-xl"
          >
+            <Toaster />
             <button
                onClick={closeSettings}
                className="absolute text-xl top-2 right-2"

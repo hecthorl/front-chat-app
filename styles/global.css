@@ -18,4 +18,8 @@
    .viewport-h {
       height: calc(100vh - 107px);
    }
+   .loading {
+      border: 1px solid white;
+      border-top-color: #3b82f6;
+   }
 }

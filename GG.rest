@@ -9,4 +9,4 @@ content-type: application/json
 }
 
 ###
-GET   http://localhost:3000/api/roominfo?roomId=6151e21b0e96b71b69c51019
+GET   http://localhost:3000/api/roominfo?roomId=-tMT62vj0OgrW3PFghzG2
