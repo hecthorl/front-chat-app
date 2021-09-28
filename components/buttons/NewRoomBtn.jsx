@@ -18,7 +18,6 @@ const NewRoomBtn = () => {
 
    const handleClick = async () => {
       setLoading(true);
-      let mounted = true;
       const room = {
          isPrivate: toggleInput,
          roomName: roomNameTrimed,
