@@ -1,43 +1,43 @@
-import useUserAuth from "hooks/useUserAuth";
-import dynamic from "next/dynamic";
-import { useEffect, useRef } from "react";
-import useStore from "store";
-import ChatTimleline from "./ChatTimleline";
+import useUserAuth from 'hooks/useUserAuth'
+import dynamic from 'next/dynamic'
+import { useEffect, useRef } from 'react'
+import useStore from 'store'
+import ChatTimleline from './ChatTimleline'
 
-const ScrollComponent = dynamic(() => import("react-scroll-to-bottom"), {
+const ScrollComponent = dynamic(() => import('react-scroll-to-bottom'), {
    ssr: false,
-   loading: () => <div className="viewport-h"></div>,
-});
+   loading: () => <div className="viewport-h"></div>
+})
 
 const Chat = ({ roomId }) => {
-   const inputRef = useRef(null);
-   const { userData } = useUserAuth();
-   const setMessages = useStore(state => state.setMessages);
-   const messages = useStore(state => state.messages);
-   const socket = useStore(state => state.socket);
+   const inputRef = useRef(null)
+   const { userData } = useUserAuth()
+   const setMessages = useStore(state => state.setMessages)
+   const messages = useStore(state => state.messages)
+   const socket = useStore(state => state.socket)
 
    useEffect(() => {
-      socket.on("msg recibido", setMessages);
-   }, [socket]);
+      socket.on('msg recibido', setMessages)
+   }, [socket])
 
    const msgSubmit = async event => {
-      event.preventDefault();
-      const msgTrimed = inputRef.current.value.trim();
-      if (!msgTrimed) return null;
+      event.preventDefault()
+      const msgTrimed = inputRef.current.value.trim()
+      if (!msgTrimed) return null
 
       const msgData = {
          username: userData.user.name,
          uid: socket.id,
          roomId,
          date: new Date().getTime(),
-         msg: msgTrimed,
-      };
+         msg: msgTrimed
+      }
 
-      await socket.emit("new message", msgData);
-      setMessages(msgData);
+      await socket.emit('new message', msgData)
+      setMessages(msgData)
 
-      inputRef.current.value = "";
-   };
+      inputRef.current.value = ''
+   }
 
    return (
       <div className="border-l border-r border-gray-300 pb-2">
@@ -59,7 +59,7 @@ const Chat = ({ roomId }) => {
             />
          </form>
       </div>
-   );
-};
+   )
+}
 
-export default Chat;
+export default Chat

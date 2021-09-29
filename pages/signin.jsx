@@ -1,6 +1,6 @@
-import { FcGoogle } from "react-icons/fc";
-import { getProviders, signIn } from "next-auth/client";
-import LHead from "components/LHead";
+import { FcGoogle } from 'react-icons/fc'
+import { getProviders, signIn } from 'next-auth/client'
+import LHead from 'components/LHead'
 
 const SignIn = ({ providers }) => {
    return (
@@ -15,7 +15,7 @@ const SignIn = ({ providers }) => {
                      onClick={() =>
                         signIn(provider.id, {
                            redirect: true,
-                           callbackUrl: "/",
+                           callbackUrl: '/'
                         })
                      }
                   >
@@ -26,14 +26,14 @@ const SignIn = ({ providers }) => {
             ))}
          </div>
       </>
-   );
-};
+   )
+}
 
-export default SignIn;
+export default SignIn
 
 export async function getServerSideProps() {
-   const providers = await getProviders();
+   const providers = await getProviders()
    return {
-      props: { providers },
-   };
+      props: { providers }
+   }
 }

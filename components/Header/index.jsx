@@ -1,20 +1,18 @@
-import dynamic from "next/dynamic";
-import { MdInput } from "react-icons/md";
-import { VscQuestion } from "react-icons/vsc";
-import { IoChatboxEllipses } from "react-icons/io5";
-import { IoSettingsOutline } from "react-icons/io5";
-import { IoApps } from "react-icons/io5";
-import { useSession } from "next-auth/client";
-import LoginBtn from "components/buttons/LoginBtn";
-import Avatar from "./Avatar";
-import ProfilePopup from "./ProfilePopup";
-import IconBrand from "components/IconBrand";
-import Links from "components/Links";
+import dynamic from 'next/dynamic'
+import { MdInput } from 'react-icons/md'
+import { VscQuestion } from 'react-icons/vsc'
+import { IoChatboxEllipses, IoSettingsOutline, IoApps } from 'react-icons/io5'
+import { useSession } from 'next-auth/client'
+import LoginBtn from 'components/buttons/LoginBtn'
+import Avatar from './Avatar'
+import ProfilePopup from './ProfilePopup'
+import IconBrand from 'components/IconBrand'
+import Links from 'components/Links'
 
-const CurrentDate = dynamic(() => import("./CurrentDate"), { ssr: false });
+const CurrentDate = dynamic(() => import('./CurrentDate'), { ssr: false })
 
 const Header = () => {
-   const [session] = useSession();
+   const [session] = useSession()
 
    return (
       <header className="flex justify-between px-4 py-1 text-[#5f6368]">
@@ -66,7 +64,7 @@ const Header = () => {
             )}
          </div>
       </header>
-   );
-};
+   )
+}
 
-export default Header;
+export default Header

@@ -4,7 +4,7 @@ const cosita = () => {
          <input type="text" id="a" className="ml-5" />
          <label htmlFor="a">aaaaaaaaaaaaaaaaaaaa</label>
       </div>
-   );
-};
+   )
+}
 
-export default cosita;
+export default cosita

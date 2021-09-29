@@ -1,11 +1,11 @@
-import useUserAuth from "hooks/useUserAuth";
-import getTime from "utils/getTime";
+import useUserAuth from 'hooks/useUserAuth'
+import getTime from 'utils/getTime'
 
 const ChatTimleline = ({ messages }) => {
-   const { userData } = useUserAuth();
+   const { userData } = useUserAuth()
 
    return messages.map(({ date, msg }, id) => {
-      const { minuteSecondAndHour, yearDayAndMonth } = getTime(date);
+      const { minuteSecondAndHour, yearDayAndMonth } = getTime(date)
       return (
          <div className="w-full flex gap-x-3 px-2 md:pl-2 mt-2" key={id}>
             <img
@@ -27,8 +27,8 @@ const ChatTimleline = ({ messages }) => {
                <p className="on-break">{msg}</p>
             </div>
          </div>
-      );
-   });
-};
+      )
+   })
+}
 
-export default ChatTimleline;
+export default ChatTimleline

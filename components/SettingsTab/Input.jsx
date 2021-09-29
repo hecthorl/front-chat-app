@@ -1,8 +1,8 @@
-import useStore from "store";
+import useStore from 'store'
 
 const Input = () => {
-   const input = useStore(state => state.input);
-   const setInput = useStore(state => state.setInput);
+   const input = useStore(state => state.input)
+   const setInput = useStore(state => state.setInput)
    return (
       <div className="relative">
          <input
@@ -20,7 +20,7 @@ const Input = () => {
             Nombre de la Sala
          </label>
       </div>
-   );
-};
+   )
+}
 
-export default Input;
+export default Input

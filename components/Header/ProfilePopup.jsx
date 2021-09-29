@@ -1,16 +1,16 @@
-import useUserAuth from "hooks/useUserAuth";
-import useStore from "store";
-import SignoutBtn from "../buttons/SignoutBtn";
+import useUserAuth from 'hooks/useUserAuth'
+import useStore from 'store'
+import SignoutBtn from '../buttons/SignoutBtn'
 
 const ProfilePopup = () => {
    const {
       userData: {
-         user: { email, image, name },
-      },
-   } = useUserAuth();
-   const isProfileOpen = useStore(state => state.isProfileOpen);
+         user: { email, image, name }
+      }
+   } = useUserAuth()
+   const isProfileOpen = useStore(state => state.isProfileOpen)
 
-   if (!isProfileOpen) return null;
+   if (!isProfileOpen) return null
    return (
       <div
          onClick={e => e.stopPropagation()}
@@ -22,7 +22,7 @@ const ProfilePopup = () => {
          <div className="w-full h-[1px] bg-gray-300"></div>
          <SignoutBtn />
       </div>
-   );
-};
+   )
+}
 
-export default ProfilePopup;
+export default ProfilePopup

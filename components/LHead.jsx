@@ -1,4 +1,4 @@
-import Head from "next/head";
+import Head from 'next/head'
 
 const LHead = ({ title }) => {
    return (
@@ -6,7 +6,7 @@ const LHead = ({ title }) => {
          <title>{title}</title>
          <link rel="shortcut icon" href="/fav.ico" type="image/x-icon" />
       </Head>
-   );
-};
+   )
+}
 
-export default LHead;
+export default LHead

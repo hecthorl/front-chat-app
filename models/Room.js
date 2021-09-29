@@ -1,10 +1,10 @@
-import { model, Schema, models } from "mongoose";
+import { model, Schema, models } from 'mongoose'
 
 const RoomSchema = new Schema({
    roomId: String,
    roomName: String,
    isPrivate: Boolean,
-   userName: String,
-});
+   userName: String
+})
 
-module.exports = models.Room || model("Room", RoomSchema);
+module.exports = models.Room || model('Room', RoomSchema)

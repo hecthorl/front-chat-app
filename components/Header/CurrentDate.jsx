@@ -1,9 +1,9 @@
-import getTime from "utils/getTime";
+import getTime from 'utils/getTime'
 
 const CurrentDate = () => {
    const { minuteSecondAndHour, yearDayAndMonth } = getTime(
       new Date().getTime()
-   );
+   )
 
    return (
       <div>
@@ -11,7 +11,7 @@ const CurrentDate = () => {
          <span> • </span>
          <span>{yearDayAndMonth}</span>
       </div>
-   );
-};
+   )
+}
 
-export default CurrentDate;
+export default CurrentDate

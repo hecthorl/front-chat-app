@@ -1,5 +1,5 @@
-import LHead from "components/LHead";
-import Welcome from "components/Welcome";
+import LHead from 'components/LHead'
+import Welcome from 'components/Welcome'
 
 export default function Home() {
    return (
@@ -7,5 +7,5 @@ export default function Home() {
          <LHead title="Goole-meet Clone" />
          <Welcome />
       </>
-   );
+   )
 }

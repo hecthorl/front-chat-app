@@ -1,6 +1,6 @@
-import Header from "components/Header";
-import IconBrand from "components/IconBrand";
-import LHead from "components/LHead";
+import Header from 'components/Header'
+// import IconBrand from 'components/IconBrand'
+import LHead from 'components/LHead'
 
 const ComoFunciona = () => {
    return (
@@ -9,7 +9,7 @@ const ComoFunciona = () => {
          <Header />
          <div className="h-full">xdxdxd</div>
       </>
-   );
-};
+   )
+}
 
-export default ComoFunciona;
+export default ComoFunciona

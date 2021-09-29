@@ -1,4 +1,4 @@
-import { IoEnterOutline } from "react-icons/io5";
+import { IoEnterOutline } from 'react-icons/io5'
 
 const JoinroomBtn = () => {
    return (
@@ -6,7 +6,7 @@ const JoinroomBtn = () => {
          <IoEnterOutline />
          <span>Unirse</span>
       </button>
-   );
-};
+   )
+}
 
-export default JoinroomBtn;
+export default JoinroomBtn

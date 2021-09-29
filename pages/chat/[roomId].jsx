@@ -1,22 +1,22 @@
-import useUserAuth from "hooks/useUserAuth";
-import { useRouter } from "next/router";
-import useStore from "store";
-import Header from "components/Header";
-import { getSession } from "next-auth/client";
-import Chat from "components/Chat";
-import { useEffect } from "react";
-import LHead from "components/LHead";
+import useUserAuth from 'hooks/useUserAuth'
+import { useRouter } from 'next/router'
+import useStore from 'store'
+import Header from 'components/Header'
+import { getSession } from 'next-auth/client'
+import Chat from 'components/Chat'
+import { useEffect } from 'react'
+import LHead from 'components/LHead'
 
 const RoomId = ({ roomData }) => {
-   const { push } = useRouter();
-   const { isUser } = useUserAuth();
-   const socket = useStore(state => state.socket);
-   const { roomId, roomName } = roomData;
+   const { push } = useRouter()
+   const { isUser } = useUserAuth()
+   const socket = useStore(state => state.socket)
+   const { roomId, roomName } = roomData
 
    useEffect(() => {
-      if (!isUser) push("/");
-      socket.emit("join_channel", roomId);
-   }, []);
+      if (!isUser) push('/')
+      socket.emit('join_channel', roomId)
+   }, [])
    return (
       <>
          <LHead title={`Room: ${roomName}`} />
@@ -27,19 +27,19 @@ const RoomId = ({ roomData }) => {
             <div className="hidden md:block"></div>
          </div>
       </>
-   );
-};
+   )
+}
 
-export default RoomId;
+export default RoomId
 
 export const getServerSideProps = async context => {
-   const { roomId } = context.params;
-   const session = await getSession(context);
-   const BASE_URL = process.env.BASE_URL;
-   const res = await fetch(`${BASE_URL}/api/roominfo?roomId=${roomId}`);
-   const data = await res.json();
+   const { roomId } = context.params
+   const session = await getSession(context)
+   const BASE_URL = process.env.BASE_URL
+   const res = await fetch(`${BASE_URL}/api/roominfo?roomId=${roomId}`)
+   const data = await res.json()
 
    return {
-      props: { session, roomData: data.roomData },
-   };
-};
+      props: { session, roomData: data.roomData }
+   }
+}

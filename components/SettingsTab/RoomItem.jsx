@@ -1,12 +1,12 @@
-import JoinroomBtn from "components/buttons/JoinroomBtn";
+import JoinroomBtn from 'components/buttons/JoinroomBtn'
 
-const RoomItem = ({ room_name }) => {
+const RoomItem = ({ roomRame }) => {
    return (
       <div className="py-2 flex justify-between px-1 items-center">
-         <span>{room_name}</span>
+         <span>{roomRame}</span>
          <JoinroomBtn />
       </div>
-   );
-};
+   )
+}
 
-export default RoomItem;
+export default RoomItem

@@ -14,7 +14,7 @@ const IconBrand = () => {
             d="M699 407.884 584.094 205.535H352.706l231.388 407.859L699 407.884Z"
          />
       </svg>
-   );
-};
+   )
+}
 
-export default IconBrand;
+export default IconBrand

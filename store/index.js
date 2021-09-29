@@ -1,17 +1,19 @@
-import { mountStoreDevtool } from "simple-zustand-devtools";
-import { io } from "socket.io-client";
-import create from "zustand";
-const url = process.env.NEXT_PUBLIC_URL_BACKEND;
+import { mountStoreDevtool } from 'simple-zustand-devtools'
+import { io } from 'socket.io-client'
+import create from 'zustand'
+const url = process.env.NEXT_PUBLIC_URL_BACKEND
 
 const useStore = create(set => ({
    messages: [],
    setMessages: data => set(state => ({ messages: [...state.messages, data] })),
    isPopup: false,
+   loadingNewRoom: false,
    isProfileOpen: false,
    isSettingsOpen: false,
    toggleInput: false,
-   input: "",
+   input: '',
    socket: io(url),
+   setLoadingNewRoom: modifire => set({ loadingNewRoom: modifire }),
    openPopup: () => set({ isPopup: true }),
    closePopup: () => set({ isPopup: false }),
    closeProfile: () => set({ isProfileOpen: false }),
@@ -21,11 +23,11 @@ const useStore = create(set => ({
    setToggleInput: () => set(state => ({ toggleInput: !state.toggleInput })),
    setInput: event => set({ input: event.target.value }),
    roomData: {},
-   setRoomData: roomInfo => set(() => ({ roomData: roomInfo })),
-}));
+   setRoomData: roomInfo => set(() => ({ roomData: roomInfo }))
+}))
 
-if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
-   mountStoreDevtool("Store", useStore);
+if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+   mountStoreDevtool('Store', useStore)
 }
 
-export default useStore;
+export default useStore

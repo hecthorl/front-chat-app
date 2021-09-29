@@ -1,17 +1,17 @@
-import { FaRegKeyboard } from "react-icons/fa";
-import useUserAuth from "hooks/useUserAuth";
-import Header from "./Header";
-import NewMeetBtn from "./buttons/NewMeetBtn";
-import LoginBtn from "./buttons/LoginBtn";
-import SettingsTab from "./SettingsTab";
+import { FaRegKeyboard } from 'react-icons/fa'
+import useUserAuth from 'hooks/useUserAuth'
+import Header from './Header'
+import NewMeetBtn from './buttons/NewMeetBtn'
+import LoginBtn from './buttons/LoginBtn'
+import SettingsTab from './SettingsTab'
 
 const Welcome = () => {
-   const { isUser } = useUserAuth();
+   const { isUser } = useUserAuth()
    return (
       <>
          <Header />
          <section
-            style={{ minHeight: "calc(100vh - 69px)" }}
+            style={{ minHeight: 'calc(100vh - 69px)' }}
             className="flex px-4 items-center flex-col md:flex-row justify-center gap-x-10"
          >
             <div className="max-w-[616px]">
@@ -53,7 +53,7 @@ const Welcome = () => {
             <SettingsTab />
          </section>
       </>
-   );
-};
+   )
+}
 
-export default Welcome;
+export default Welcome

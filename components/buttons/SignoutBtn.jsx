@@ -1,7 +1,7 @@
-import { signOut } from "next-auth/client";
+import { signOut } from 'next-auth/client'
 
 const SignoutBtn = () => {
-   const handleSignOut = () => signOut();
+   const handleSignOut = () => signOut()
    return (
       <button
          className="border border-gray-400 px-2 py-1 rounded hover:bg-gray-100 transition-colors"
@@ -9,7 +9,7 @@ const SignoutBtn = () => {
       >
          Cerrar Sessión
       </button>
-   );
-};
+   )
+}
 
-export default SignoutBtn;
+export default SignoutBtn

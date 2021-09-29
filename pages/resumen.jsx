@@ -1,5 +1,5 @@
-import Header from "components/Header";
-import LHead from "components/LHead";
+import Header from 'components/Header'
+import LHead from 'components/LHead'
 
 const Resumen = () => {
    return (
@@ -10,7 +10,7 @@ const Resumen = () => {
             <p className="">Esta app es mia</p>
          </div>
       </>
-   );
-};
+   )
+}
 
-export default Resumen;
+export default Resumen

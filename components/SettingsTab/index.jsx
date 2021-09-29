@@ -1,19 +1,19 @@
-import { MdClose } from "react-icons/md";
-import useStore from "store";
-import RoomItem from "./RoomItem";
-import CreateRoom from "./CreateRoom";
-import dynamic from "next/dynamic";
+import { MdClose } from 'react-icons/md'
+import useStore from 'store'
+import RoomItem from './RoomItem'
+import CreateRoom from './CreateRoom'
+import dynamic from 'next/dynamic'
 
 const Toaster = dynamic(
-   () => import("react-hot-toast").then(module => module.Toaster),
+   () => import('react-hot-toast').then(module => module.Toaster),
    { ssr: false }
-);
+)
 
 const SettingsTab = () => {
-   const isSettingsOpen = useStore(state => state.isSettingsOpen);
-   const closeSettings = useStore(state => state.closeSettings);
+   const isSettingsOpen = useStore(state => state.isSettingsOpen)
+   const closeSettings = useStore(state => state.closeSettings)
 
-   if (!isSettingsOpen) return null;
+   if (!isSettingsOpen) return null
    return (
       <div
          onClick={closeSettings}
@@ -45,7 +45,7 @@ const SettingsTab = () => {
             <CreateRoom />
          </div>
       </div>
-   );
-};
+   )
+}
 
-export default SettingsTab;
+export default SettingsTab

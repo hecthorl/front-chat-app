@@ -1,49 +1,47 @@
-import useUserAuth from "hooks/useUserAuth";
-import { nanoid } from "nanoid";
-import { toast } from "react-hot-toast";
-import { useRouter } from "next/router";
-import { useState } from "react";
-import { BsPlusSquare } from "react-icons/bs";
-import useStore from "store";
+import useUserAuth from 'hooks/useUserAuth'
+import { nanoid } from 'nanoid'
+import { toast } from 'react-hot-toast'
+import { useRouter } from 'next/router'
+import { BsPlusSquare } from 'react-icons/bs'
+import useStore from 'store'
 
 const NewRoomBtn = () => {
-   const [loading, setLoading] = useState(false);
-   const toggleInput = useStore(state => state.toggleInput);
-   const input = useStore(state => state.input);
-   const setRoomData = useStore(state => state.setRoomData);
-   const roomNameTrimed = input.trim();
-   const isDisabled = !roomNameTrimed.length || loading;
-   const { userData } = useUserAuth();
-   const { push } = useRouter();
+   const toggleInput = useStore(state => state.toggleInput)
+   const setLoadingNewRoom = useStore(state => state.setLoadingNewRoom)
+   const loadingNewRoom = useStore(state => state.loadingNewRoom)
+   const input = useStore(state => state.input)
+   const setRoomData = useStore(state => state.setRoomData)
+   const roomNameTrimed = input.trim()
+   const isDisabled = !roomNameTrimed.length || loadingNewRoom
+   const { userData } = useUserAuth()
+   const { push } = useRouter()
 
    const handleClick = async () => {
-      setLoading(true);
+      setLoadingNewRoom(true)
       const room = {
          isPrivate: toggleInput,
          roomName: roomNameTrimed,
          roomId: nanoid(),
-         userName: userData.user.name,
-      };
+         userName: userData.user.name
+      }
 
       const opt = {
          body: JSON.stringify(room),
-         method: "POST",
+         method: 'POST',
          headers: {
-            "Content-Type": "application/json; charset=UTF-8",
-         },
-      };
-      const response = await fetch("/api/roominfo", opt);
+            'Content-Type': 'application/json; charset=UTF-8'
+         }
+      }
+      const response = await fetch('/api/roominfo', opt)
 
       if (response.status !== 201) {
-         setLoading(false);
-         toast.error("Falló al crear Room", { duration: 5e3 });
-         return;
+         setLoadingNewRoom(false)
+         toast.error('Falló al crear Room', { duration: 5e3 })
+         return
       }
-
-      setTimeout(() => setLoading(false), 1000);
-      push(`chat/${room.roomId}`);
-      setRoomData(room);
-   };
+      push(`/chat/${room.roomId}`).then(algo => setLoadingNewRoom(false))
+      setRoomData(room)
+   }
 
    return (
       <button
@@ -51,7 +49,7 @@ const NewRoomBtn = () => {
          disabled={isDisabled}
          className="w-full flex items-center justify-center gap-x-3 bg-blue-500 hover:bg-blue-600 rounded py-2 text-white transition-colors disabled:bg-blue-400 disabled:cursor-not-allowed"
       >
-         {loading ? (
+         {loadingNewRoom ? (
             <div className="h-5 w-5 animate-spin rounded-full bg-transparent loading"></div>
          ) : (
             <>
@@ -60,7 +58,7 @@ const NewRoomBtn = () => {
             </>
          )}
       </button>
-   );
-};
+   )
+}
 
-export default NewRoomBtn;
+export default NewRoomBtn

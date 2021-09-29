@@ -1,5 +1,5 @@
 const useNewRoom = () => {
    //
-};
+}
 
-export default useNewRoom;
+export default useNewRoom

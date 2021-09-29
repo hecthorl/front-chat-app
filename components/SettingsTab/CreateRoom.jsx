@@ -1,6 +1,6 @@
-import NewRoomBtn from "components/buttons/NewRoomBtn";
-import Input from "./Input";
-import Toggle from "./Toggle";
+import NewRoomBtn from 'components/buttons/NewRoomBtn'
+import Input from './Input'
+import Toggle from './Toggle'
 
 const CreateRoom = () => {
    return (
@@ -10,7 +10,7 @@ const CreateRoom = () => {
          <Toggle />
          <NewRoomBtn />
       </div>
-   );
-};
+   )
+}
 
-export default CreateRoom;
+export default CreateRoom

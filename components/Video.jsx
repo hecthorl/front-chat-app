@@ -1,10 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react'
 
 const Video = ({ autoPlay, controls, srcObject, muted }) => {
-   const videoRef = useRef(null);
+   const videoRef = useRef(null)
    useEffect(() => {
-      videoRef.current.srcObject = srcObject;
-   }, []);
+      videoRef.current.srcObject = srcObject
+   }, [])
 
    return (
       <video
@@ -13,7 +13,7 @@ const Video = ({ autoPlay, controls, srcObject, muted }) => {
          controls={controls}
          muted={muted}
       ></video>
-   );
-};
+   )
+}
 
-export default Video;
+export default Video
