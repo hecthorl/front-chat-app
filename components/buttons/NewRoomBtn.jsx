@@ -32,14 +32,17 @@ const NewRoomBtn = () => {
             'Content-Type': 'application/json; charset=UTF-8'
          }
       }
-      const response = await fetch('/api/roominfo', opt)
 
-      if (response.status !== 201) {
+      const BASE_URL = process.env.NEXT_PUBLIC_URL_BACKEND
+      console.log(BASE_URL)
+      const response = await fetch(BASE_URL, opt)
+
+      if (response.status !== 200) {
          setLoadingNewRoom(false)
          toast.error('Falló al crear Room', { duration: 5e3 })
          return
       }
-      push(`/chat/${room.roomId}`).then(algo => setLoadingNewRoom(false))
+      push(`/chat/${room.roomId}`).then(() => setLoadingNewRoom(false))
       setRoomData(room)
    }
 
