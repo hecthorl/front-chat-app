@@ -9,7 +9,7 @@ const ScrollComponent = dynamic(() => import('react-scroll-to-bottom'), {
    loading: () => <div className="viewport-h"></div>
 })
 
-const Chat = ({ roomId }) => {
+const Chat = ({ room }) => {
    const inputRef = useRef(null)
    const { userData } = useUserAuth()
    const setMessages = useStore(state => state.setMessages)
@@ -20,7 +20,7 @@ const Chat = ({ roomId }) => {
       socket.on('msg recibido', setMessages)
    }, [socket])
 
-   const msgSubmit = async event => {
+   const msgSubmit = event => {
       event.preventDefault()
       const msgTrimed = inputRef.current.value.trim()
       if (!msgTrimed) return null
@@ -28,12 +28,12 @@ const Chat = ({ roomId }) => {
       const msgData = {
          username: userData.user.name,
          uid: socket.id,
-         roomId,
+         roomId: room,
          date: new Date().getTime(),
          msg: msgTrimed
       }
 
-      await socket.emit('new message', msgData)
+      socket.emit('new message', msgData)
       setMessages(msgData)
 
       inputRef.current.value = ''

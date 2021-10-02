@@ -5,7 +5,14 @@ const url = process.env.NEXT_PUBLIC_URL_BACKEND
 
 const useStore = create(set => ({
    messages: [],
-   setMessages: data => set(state => ({ messages: [...state.messages, data] })),
+   setMessages: data =>
+      set(state => {
+         const nightArray = Array.isArray(data)
+            ? [].concat(data)
+            : [...state.messages, data]
+
+         return { messages: nightArray }
+      }),
    isPopup: false,
    loadingNewRoom: false,
    isProfileOpen: false,

@@ -22,7 +22,8 @@ const NewRoomBtn = () => {
          isPrivate: toggleInput,
          roomName: roomNameTrimed,
          roomId: nanoid(),
-         userName: userData.user.name
+         userName: userData.user.name,
+         chat: []
       }
 
       const opt = {
@@ -34,10 +35,9 @@ const NewRoomBtn = () => {
       }
 
       const BASE_URL = process.env.NEXT_PUBLIC_URL_BACKEND
-      console.log(BASE_URL)
-      const response = await fetch(BASE_URL, opt)
 
-      if (response.status !== 200) {
+      const response = await fetch(BASE_URL, opt)
+      if (response.status !== 201) {
          setLoadingNewRoom(false)
          toast.error('Falló al crear Room', { duration: 5e3 })
          return

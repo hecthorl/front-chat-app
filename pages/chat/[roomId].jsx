@@ -11,11 +11,14 @@ const RoomId = ({ roomData }) => {
    const { push } = useRouter()
    const { isUser } = useUserAuth()
    const socket = useStore(state => state.socket)
-   const { roomId, roomName } = roomData
+   console.log({ roomData })
+   const setMessages = useStore(state => state.setMessages)
+   const { roomId, roomName, chat } = roomData
 
    useEffect(() => {
       if (!isUser) push('/')
       socket.emit('join_channel', roomId)
+      setMessages(chat)
    }, [])
    return (
       <>
@@ -40,6 +43,6 @@ export const getServerSideProps = async context => {
    const data = await res.json()
 
    return {
-      props: { session, roomData: data }
+      props: { session, roomData: data.roomData }
    }
 }

@@ -3,7 +3,6 @@ import getTime from 'utils/getTime'
 
 const ChatTimleline = ({ messages }) => {
    const { userData } = useUserAuth()
-
    return messages.map(({ date, msg }, id) => {
       const { minuteSecondAndHour, yearDayAndMonth } = getTime(date)
       return (
