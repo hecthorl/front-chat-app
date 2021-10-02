@@ -36,7 +36,12 @@ const NewRoomBtn = () => {
 
       const BASE_URL = process.env.NEXT_PUBLIC_URL_BACKEND
 
-      const response = await fetch(BASE_URL, opt)
+      const response = await fetch(BASE_URL, opt).catch(() => {
+         setLoadingNewRoom(false)
+         toast.error('Falló de servidor, inténtelo más tarde', {
+            duration: 5e3
+         })
+      })
       if (response.status !== 201) {
          setLoadingNewRoom(false)
          toast.error('Falló al crear Room', { duration: 5e3 })

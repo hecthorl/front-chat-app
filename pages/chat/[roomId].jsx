@@ -11,7 +11,6 @@ const RoomId = ({ roomData }) => {
    const { push } = useRouter()
    const { isUser } = useUserAuth()
    const socket = useStore(state => state.socket)
-   console.log({ roomData })
    const setMessages = useStore(state => state.setMessages)
    const { roomId, roomName, chat } = roomData
 
