@@ -17,10 +17,10 @@ const Chat = ({ room }) => {
    const socket = useStore(state => state.socket)
 
    useEffect(() => {
-      socket.on('msg recibido', data => {
-         console.log(data)
-         setMessages(data)
-      })
+      socket.on('message_in', setMessages)
+      return () => {
+         console.log('esto es un log de un efecto')
+      }
    }, [socket])
 
    const msgSubmit = event => {

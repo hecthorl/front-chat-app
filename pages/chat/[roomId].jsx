@@ -1,11 +1,11 @@
-import useUserAuth from 'hooks/useUserAuth'
-import { useRouter } from 'next/router'
-import useStore from 'store'
-import Header from 'components/Header'
 import { getSession } from 'next-auth/client'
-import Chat from 'components/Chat'
-import { useEffect } from 'react'
+import useStore from 'store'
 import LHead from 'components/LHead'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
+import useUserAuth from 'hooks/useUserAuth'
+import Header from 'components/Header'
+import Chat from 'components/Chat'
 
 const RoomId = ({ roomData }) => {
    const { push } = useRouter()
