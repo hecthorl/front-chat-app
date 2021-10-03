@@ -1,8 +1,8 @@
 import { MdClose } from 'react-icons/md'
 import useStore from 'store'
-import RoomItem from './RoomItem'
 import CreateRoom from './CreateRoom'
 import dynamic from 'next/dynamic'
+import JoinRoom from './JoinRoom'
 
 const Toaster = dynamic(
    () => import('react-hot-toast').then(module => module.Toaster),
@@ -30,17 +30,7 @@ const SettingsTab = () => {
             >
                <MdClose />
             </button>
-            <div className="md:w-1/2 w-full px-2">
-               <h5 className="py-2 text-lg text-center">Salas disponibles</h5>
-               <div className="divide-y h-[250px] overflow-y-auto text-center">
-                  <RoomItem roomName="Sass" />
-                  <RoomItem roomName="Sass" />
-                  <RoomItem roomName="Sass" />
-                  <RoomItem roomName="Sass" />
-                  <RoomItem roomName="Sass" />
-                  <RoomItem roomName="Sass" />
-               </div>
-            </div>
+            <JoinRoom />
             <div className="h-[1px] w-full bg-gray-300 my-2 md:hidden"></div>
             <CreateRoom />
          </div>

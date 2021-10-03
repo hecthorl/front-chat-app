@@ -1,9 +1,17 @@
+import { useEffect } from 'react'
 import { RiChatNewLine, RiVideoAddLine } from 'react-icons/ri'
 import useStore from 'store'
+import getAllRooms from 'utils/getAllRooms'
 
 const OptionsBtn = () => {
    const isPopup = useStore(state => state.isPopup)
    const openSettings = useStore(state => state.openSettings)
+   const setAllRooms = useStore(state => state.setAllRooms)
+
+   useEffect(() => {
+      isPopup && getAllRooms(setAllRooms)
+   }, [isPopup])
+
    if (!isPopup) return null
    return (
       <div className="absolute top-0 -left-2 text-lg md:text-xl text-black w-[300px] md:w-[328px] z-10 bg-white shdwn py-2">

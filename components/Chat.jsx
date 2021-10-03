@@ -17,7 +17,10 @@ const Chat = ({ room }) => {
    const socket = useStore(state => state.socket)
 
    useEffect(() => {
-      socket.on('msg recibido', setMessages)
+      socket.on('msg recibido', data => {
+         console.log(data)
+         setMessages(data)
+      })
    }, [socket])
 
    const msgSubmit = event => {
@@ -26,7 +29,10 @@ const Chat = ({ room }) => {
       if (!msgTrimed) return null
 
       const msgData = {
-         username: userData.user.name,
+         userInfo: {
+            username: userData.user.name,
+            userImage: userData.user.image
+         },
          uid: socket.id,
          roomId: room,
          date: new Date().getTime(),
