@@ -18,9 +18,6 @@ const Chat = ({ room }) => {
 
    useEffect(() => {
       socket.on('message_in', setMessages)
-      return () => {
-         console.log('esto es un log de un efecto')
-      }
    }, [socket])
 
    const msgSubmit = event => {

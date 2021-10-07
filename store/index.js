@@ -15,6 +15,7 @@ const useStore = create(set => ({
    isProfileOpen: false,
    isSettingsOpen: false,
    toggleInput: false,
+   toggleChat: false,
    input: '',
    socket: io(url),
    setLoadingNewRoom: modifire => set({ loadingNewRoom: modifire }),
@@ -24,7 +25,9 @@ const useStore = create(set => ({
    openProfile: () => set({ isProfileOpen: true }),
    openSettings: () => set({ isSettingsOpen: true }),
    closeSettings: () => set({ isSettingsOpen: false }),
+   closeToggleChat: () => set({ toggleChat: false }),
    setToggleInput: () => set(state => ({ toggleInput: !state.toggleInput })),
+   setToggleChat: () => set(state => ({ toggleChat: !state.toggleChat })),
    setInput: event => set({ input: event.target.value }),
    roomData: {},
    setRoomData: roomInfo => set(() => ({ roomData: roomInfo }))

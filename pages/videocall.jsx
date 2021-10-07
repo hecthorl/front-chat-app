@@ -83,7 +83,7 @@ export default function VideoCall() {
       if (typeof window !== 'undefined') location.reload()
    }
    const [input, setInput] = useState('')
-   console.log(socket.id)
+   console.log({ myid: socket.id })
    return (
       <>
          <LHead title="Video Llama" />

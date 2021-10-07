@@ -18,7 +18,11 @@ const Avatar = () => {
             openProfile()
          }}
       >
-         <img className="w-8 rounded-full" src={img} alt="user image profile" />
+         <img
+            className="w-8 h-8 rounded-full overflow-hidden"
+            src={img}
+            alt="user image profile"
+         />
       </button>
    )
 }
