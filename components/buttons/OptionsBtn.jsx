@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid'
 import { useEffect } from 'react'
 import { RiChatNewLine, RiVideoAddLine } from 'react-icons/ri'
 import useStore from 'store'
@@ -16,7 +17,7 @@ const OptionsBtn = () => {
    return (
       <div className="absolute top-0 -left-2 text-lg md:text-xl text-black w-[300px] md:w-[328px] z-10 bg-white shdwn py-2">
          <a
-            href="/videocall"
+            href={`/videochat/${nanoid()}`}
             className="w-full flex items-center gap-x-6 px-2 py-3 hover:text-white hover:bg-black transition-colors"
          >
             <RiVideoAddLine />

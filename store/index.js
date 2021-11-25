@@ -1,5 +1,3 @@
-import { useEffect, useRef } from 'react'
-import Peer from 'simple-peer'
 import { mountStoreDevtool } from 'simple-zustand-devtools'
 import { io } from 'socket.io-client'
 import create from 'zustand'
@@ -30,7 +28,14 @@ const useStore = create(set => ({
    setToggleChat: () => set(state => ({ toggleChat: !state.toggleChat })),
    setInput: event => set({ input: event.target.value }),
    roomData: {},
-   setRoomData: roomInfo => set(() => ({ roomData: roomInfo }))
+   setRoomData: roomInfo => set(() => ({ roomData: roomInfo })),
+   currentVideoRef: null,
+   setCurrentVideoRef: ref => set(() => ({ currentVideoRef: ref })),
+   peers: [],
+   setPeers: peer =>
+      set(state => {
+         return { peers: [...state.peers, peer] }
+      })
 }))
 
 if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {

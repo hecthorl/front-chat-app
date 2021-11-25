@@ -1,12 +1,18 @@
+import useStore from 'store'
+
 const VideoGrid = () => {
-   const videoStreams = []
+   const currentVideoRef = useStore(state => state.currentVideoRef)
+   const peers = useStore(state => state.peers)
+   console.log({ peers })
    return (
       <div className="flex-grow grid place-content-center">
-         {videoStreams.length ? (
-            <video className="w-full" muted autoPlay />
-         ) : (
-            <div> No hay video </div>
-         )}
+         <video
+            ref={currentVideoRef}
+            playsInline
+            autoPlay
+            muted
+            className="w-full h-full transform scale-x-[-1]"
+         />
       </div>
    )
 }
