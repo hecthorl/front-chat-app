@@ -1,4 +1,4 @@
-import { signOut } from 'next-auth/client'
+import { signOut } from 'next-auth/react'
 
 const SignoutBtn = () => {
    const handleSignOut = () => signOut()

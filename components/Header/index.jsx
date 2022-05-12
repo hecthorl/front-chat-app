@@ -2,17 +2,17 @@ import dynamic from 'next/dynamic'
 import { MdInput } from 'react-icons/md'
 import { VscQuestion } from 'react-icons/vsc'
 import { IoChatboxEllipses, IoSettingsOutline, IoApps } from 'react-icons/io5'
-import { useSession } from 'next-auth/client'
 import LoginBtn from 'components/buttons/LoginBtn'
 import Avatar from './Avatar'
 import ProfilePopup from './ProfilePopup'
 import IconBrand from 'components/IconBrand'
 import Links from 'components/Links'
+import useUserAuth from 'hooks/useUserAuth'
 
 const CurrentDate = dynamic(() => import('./CurrentDate'), { ssr: false })
 
 const Header = () => {
-   const [session] = useSession()
+   const { isUser } = useUserAuth()
 
    return (
       <header className="flex justify-between px-4 py-1 text-[#5f6368]">
@@ -24,7 +24,7 @@ const Header = () => {
             <Links />
          </div>
          <div className="flex gap-x-3 items-center">
-            {!session ? (
+            {!isUser ? (
                <>
                   <a href="/signin" className="hidden font-semibold">
                      Inciar sesión

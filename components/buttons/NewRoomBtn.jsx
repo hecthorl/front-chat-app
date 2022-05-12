@@ -1,6 +1,5 @@
 import useUserAuth from 'hooks/useUserAuth'
 import { nanoid } from 'nanoid'
-import { toast } from 'react-hot-toast'
 import { useRouter } from 'next/router'
 import { BsPlusSquare } from 'react-icons/bs'
 import useStore from 'store'
@@ -38,13 +37,13 @@ const NewRoomBtn = () => {
 
       const response = await fetch(BASE_URL, opt).catch(() => {
          setLoadingNewRoom(false)
-         toast.error('Falló de servidor, inténtelo más tarde', {
-            duration: 5e3
-         })
+         // toast.error('Falló de servidor, inténtelo más tarde', {
+         //    duration: 5e3
+         // })
       })
       if (response.status !== 201) {
          setLoadingNewRoom(false)
-         toast.error('Falló al crear Room', { duration: 5e3 })
+         // toast.error('Falló al crear Room', { duration: 5e3 })
          return
       }
       push(`/chat/${room.roomId}`).then(() => setLoadingNewRoom(false))

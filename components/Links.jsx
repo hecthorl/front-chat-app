@@ -1,4 +1,4 @@
-import { useSession } from 'next-auth/client'
+import useUserAuth from 'hooks/useUserAuth'
 import Link from 'next/link'
 
 const enlaces = [
@@ -23,8 +23,8 @@ const CustomLink = ({ title, href }) => (
 )
 
 const Links = () => {
-   const [session] = useSession()
-   if (session) return null
+   const { isUser } = useUserAuth()
+   if (isUser) return null
    return enlaces.map(({ title, href }, i) => (
       <CustomLink key={i} title={title} href={href} />
    ))

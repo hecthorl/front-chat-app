@@ -1,5 +1,5 @@
 import { AiOutlineVideoCamera } from 'react-icons/ai'
-import { signIn } from 'next-auth/client'
+import { signIn } from 'next-auth/react'
 
 const LoginBtn = () => {
    const handleSingIn = () => signIn()

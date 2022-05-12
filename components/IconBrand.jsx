@@ -1,4 +1,4 @@
-const IconBrand = () => {
+export default function IconBrand() {
    return (
       <svg viewBox="0 0 699 615">
          <path
@@ -16,5 +16,3 @@ const IconBrand = () => {
       </svg>
    )
 }
-
-export default IconBrand

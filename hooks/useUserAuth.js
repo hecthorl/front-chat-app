@@ -1,12 +1,11 @@
-import { useSession } from 'next-auth/client'
+import { useSession, signIn, signOut } from 'next-auth/react'
 
-const useUserAuth = () => {
-   const [data, loading] = useSession()
-   return {
-      isUser: Boolean(data),
-      loading,
-      userData: data
+export default function useUserAuth() {
+   const { data } = useSession()
+   const userData = {
+      name: data?.user?.name || null,
+      image: data?.user?.image || null,
+      email: data?.user?.email || null
    }
+   return { userData, signIn, signOut }
 }
-
-export default useUserAuth

@@ -1,27 +1,44 @@
-import { AiOutlineVideoCameraAdd } from 'react-icons/ai'
-import useStore from 'store'
-import OptionsBtn from './OptionsBtn'
+import { Button, Menu } from '@mantine/core'
+import useUserAuth from 'hooks/useUserAuth'
+import { useRouter } from 'next/router'
+import { AiOutlineVideoCamera } from 'react-icons/ai'
+import { BiVideoPlus } from 'react-icons/bi'
 
-const NewMeetBtn = () => {
-   const openPopup = useStore(state => state.openPopup)
-   const closePopup = useStore(state => state.closePopup)
+export default function NewRoomBtn() {
+   const { signIn, userData } = useUserAuth()
+   const { push } = useRouter()
+   const handleSigin = () => signIn()
 
-   document.addEventListener('click', closePopup)
+   if (!userData) {
+      return (
+         <Button
+            onClick={handleSigin}
+            sx={{ width: 'fit-content' }}
+            leftIcon={<AiOutlineVideoCamera />}
+            children="Nueva Room"
+         />
+      )
+   }
+
    return (
-      <div className="relative">
-         <button
-            onClick={e => {
-               e.stopPropagation()
-               openPopup()
-            }}
-            className="bg-blue-600 text-white flex items-center px-5 py-3 rounded gap-x-3"
-         >
-            <AiOutlineVideoCameraAdd />
-            <span>Nueva reunión</span>
-         </button>
-         <OptionsBtn />
-      </div>
+      <Menu
+         gutter={-30}
+         control={
+            <Button
+               sx={{ width: 'fit-content' }}
+               leftIcon={<AiOutlineVideoCamera />}
+               children="Nueva Room"
+            />
+         }
+      >
+         <Menu.Item
+            component="button"
+            onClick={() =>
+               push('/?SettingsMeetModal=true', '/', { shallow: true })
+            }
+            children="Iniciar videollamada"
+            icon={<BiVideoPlus />}
+         />
+      </Menu>
    )
 }
-
-export default NewMeetBtn

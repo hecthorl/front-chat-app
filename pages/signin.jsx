@@ -1,35 +1,69 @@
-import { FcGoogle } from 'react-icons/fc'
-import { getProviders, signIn } from 'next-auth/client'
-import LHead from 'components/LHead'
+import Head from 'next/head'
+import { getProviders, signIn } from 'next-auth/react'
+import { Box, Button, Text } from '@mantine/core'
+import GoogleIcon from 'components/GoogleIcon'
+import { IoEnterOutline } from 'react-icons/io5'
 
-const SignIn = ({ providers }) => {
+export default function Signin({ providers }) {
    return (
       <>
-         <LHead title="Sign In" />
-         <div className="flex flex-col justify-center items-center h-screen w-screen">
-            <h1 className="mb-5 text-3xl">Google meet - Clone</h1>
-            {Object.values(providers).map(provider => (
-               <div key={provider.name}>
-                  <button
-                     className="flex text-xl items-center gap-x-2 border border-black hover:border-transparent hover:bg-black hover:text-white p-2 rounded transition-colors"
+         <Head>
+            <title>Sign In - Google meet-clone</title>
+            <meta name="description" content="Ingreso a google-meet clone" />
+         </Head>
+         <Box
+            sx={{
+               display: 'flex',
+               minHeight: '100vh',
+               justifyContent: 'center',
+               alignItems: 'center'
+            }}
+         >
+            <Box
+               sx={{
+                  borderRadius: '8px',
+                  display: 'flex',
+                  border: '1px solid #dadce0',
+                  flexDirection: 'column',
+                  width: '448px',
+                  padding: '0 2rem',
+                  gap: '1rem',
+                  alignItems: 'center',
+                  paddingBottom: '3rem'
+               }}
+            >
+               <Box
+                  sx={{
+                     display: 'flex',
+                     flexDirection: 'column',
+                     alignItems: 'center',
+                     gap: '.5rem',
+                     padding: '1rem 0 0 0'
+                  }}
+               >
+                  <GoogleIcon />
+                  <Text sx={{ fontSize: '24px' }}>Inciar sesión</Text>
+                  <Text> Utiliza tu cuenta de Google </Text>
+               </Box>
+               {Object.values(providers).map(provider => (
+                  <Button
+                     key={provider.name}
                      onClick={() =>
                         signIn(provider.id, {
                            redirect: true,
                            callbackUrl: '/'
                         })
                      }
-                  >
-                     <FcGoogle />
-                     <span>Inicia sesión con {provider.name}</span>
-                  </button>
-               </div>
-            ))}
-         </div>
+                     radius="xl"
+                     children="Ir con Google"
+                     leftIcon={<IoEnterOutline />}
+                  />
+               ))}
+            </Box>
+         </Box>
       </>
    )
 }
-
-export default SignIn
 
 export async function getServerSideProps() {
    const providers = await getProviders()

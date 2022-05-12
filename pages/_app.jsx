@@ -1,13 +1,15 @@
-import { Provider } from 'next-auth/client'
-import '../styles/global.css'
+import { MantineProvider } from '@mantine/core'
+import { SessionProvider } from 'next-auth/react'
 
-export default function MyApp({
+export default function App({
    Component,
    pageProps: { session, ...pageProps }
 }) {
    return (
-      <Provider session={session}>
-         <Component {...pageProps} />
-      </Provider>
+      <SessionProvider session={session}>
+         <MantineProvider withGlobalStyles withNormalizeCSS>
+            <Component {...pageProps} />
+         </MantineProvider>
+      </SessionProvider>
    )
 }

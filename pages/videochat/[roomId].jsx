@@ -1,74 +1,64 @@
-import AppbarMenu from 'components/AppbarMenu'
-import ChatAside from 'components/ChatAside'
-import LHead from 'components/LHead'
-import VideoGrid from 'components/VideoGrid'
-import { useRouter } from 'next/router'
-import { useEffect, useRef } from 'react'
-import useStore from 'store'
-import addPeer from 'utils/addPeer'
-import createPeer from 'utils/createPeer'
+import Head from 'next/head'
+import { getSession } from 'next-auth/react'
+import { Box } from '@mantine/core'
+import VideoRoom from 'components/VideoRoom'
+import Lobby from 'components/Lobby'
+import useTwilioConfig from 'hooks/useTwilioConfig'
+import useBool from 'hooks/useBool'
+import useUserAuth from 'hooks/useUserAuth'
 
-export default function Videchat() {
-   const socket = useStore(state => state.socket)
-   const peers = useStore(state => state.peers)
-   const setPeers = useStore(state => state.setPeers)
-   const setCurrentVideoRef = useStore(state => state.setCurrentVideoRef)
-   // const { pathname } = useRouter()
-   const currentVideoRef = useRef(null)
-   const peersRef = useRef([])
-
-   useEffect(() => {
-      setCurrentVideoRef(currentVideoRef)
-      navigator.mediaDevices
-         .getUserMedia({ video: true, audio: true })
-         .then(stream => {
-            currentVideoRef.current.srcObject = stream
-            socket.emit('join_videoroom', 'sVA5Zy7ZF7r63Cfl-vhQo')
-            socket.on('all users', users => {
-               const peers = []
-               users.forEach(userID => {
-                  const peer = createPeer(userID, socket.id, stream, socket)
-                  peersRef.current.push({
-                     peerID: userID,
-                     peer
-                  })
-                  peers.push(peer)
-               })
-               setPeers(peers)
-            })
-            socket.on('user joined', payload => {
-               const peer = addPeer(
-                  payload.signal,
-                  payload.callerID,
-                  stream,
-                  socket
-               )
-               peersRef.current.push({
-                  peerID: payload.callerID,
-                  peer
-               })
-
-               setPeers(peer)
-            })
-
-            socket.on('receiving returned signal', payload => {
-               console.log({ payload })
-               const item = peersRef.current.find(p => p.peerID === payload.id)
-               item.peer.signal(payload.signal)
-            })
-         })
-   }, [])
-   console.log(peers)
+export default function VideoChatRoom({ roomData, twilioToken }) {
+   const { userData } = useUserAuth()
+   const [isJoin, setJoin] = useBool()
+   const { getToken, identity, roomName, token } = useTwilioConfig()
    return (
       <>
-         <LHead title="Video Chat" />
-         <div className="w-screen h-screen bg-gray-600 flex flex-col">
-            <div className="w-full flex-grow h-full flex p-1 gap-x-5 px-4">
-               <VideoGrid />
-               <ChatAside />
-            </div>
-            <AppbarMenu />
-         </div>
+         <Head>
+            <title>Room: {roomData.roomName}</title>
+            <meta name="description" content="room" />
+         </Head>
+         <Box
+            sx={{
+               backgroundColor: '#202124',
+               minHeight: '100vh',
+               display: 'flex',
+               flexDirection: 'column'
+            }}
+         >
+            {isJoin || twilioToken ? (
+               <VideoRoom
+                  token={token || twilioToken}
+                  identity={userData.name || identity}
+                  roomName={roomData.roomId || roomName}
+                  onDisconnected={() => setJoin.off()}
+               />
+            ) : (
+               <Lobby
+                  handleSubmit={data => {
+                     getToken({
+                        identity: data.userName,
+                        roomName: roomData.roomId
+                     })
+                     setJoin.on()
+                  }}
+               />
+            )}
+         </Box>
       </>
    )
+}
+
+/**
+ * @param {import('next').GetServerSidePropsContext} ctx
+ */
+export async function getServerSideProps(ctx) {
+   const session = await getSession(ctx)
+   const twilioToken = ctx.query.roomToken ?? null
+   const URI = process.env.BACK_BASE_URL
+
+   const url = `${URI}/roominfo?roomId=${ctx.params.roomId}`
+   const res = await fetch(url)
+   const { roomData } = await res.json()
+
+   return { props: { roomData, session, twilioToken } }
 }
