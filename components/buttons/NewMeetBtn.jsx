@@ -9,7 +9,7 @@ export default function NewRoomBtn() {
    const { push } = useRouter()
    const handleSigin = () => signIn()
 
-   if (!userData) {
+   if (!userData.email) {
       return (
          <Button
             onClick={handleSigin}
