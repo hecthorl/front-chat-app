@@ -8,7 +8,7 @@ export default function NewRoomBtn() {
    const { signIn, userData } = useUserAuth()
    const { push } = useRouter()
 
-   if (!userData.email) {
+   if (userData.email) {
       return (
          <Button
             onClick={() => signIn('google')}
