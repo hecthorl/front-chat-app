@@ -12,4 +12,4 @@ yarn dev
 
 Google meet clone for @midudev hackathon
 
-- [Midudev Twitch](midu.live) 📽
+- [Midudev Twitch](https://www.twitch.tv/midudev) 📽
