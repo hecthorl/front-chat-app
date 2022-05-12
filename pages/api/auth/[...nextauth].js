@@ -8,9 +8,6 @@ export default NextAuth({
          clientSecret: process.env.GOOGLE_SECRET_KEY
       })
    ],
-   jwt: {
-      signingKey: process.env.JWT_SIGNING_PRIVATE_KEY
-   },
    pages: {
       signIn: '/signin'
    },
