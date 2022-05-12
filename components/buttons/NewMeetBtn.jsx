@@ -7,12 +7,11 @@ import { BiVideoPlus } from 'react-icons/bi'
 export default function NewRoomBtn() {
    const { signIn, userData } = useUserAuth()
    const { push } = useRouter()
-   const handleSigin = () => signIn()
 
    if (!userData.email) {
       return (
          <Button
-            onClick={handleSigin}
+            onClick={() => signIn('google')}
             sx={{ width: 'fit-content' }}
             leftIcon={<AiOutlineVideoCamera />}
             children="Nueva Room"
