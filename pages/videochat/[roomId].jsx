@@ -1,5 +1,5 @@
-import Head from 'next/head'
 import { getSession } from 'next-auth/react'
+import Head from 'components/Head'
 import { Box } from '@mantine/core'
 import VideoRoom from 'components/VideoRoom'
 import Lobby from 'components/Lobby'
@@ -13,10 +13,10 @@ export default function VideoChatRoom({ roomData, twilioToken }) {
    const { getToken, identity, roomName, token } = useTwilioConfig()
    return (
       <>
-         <Head>
-            <title>Room: {roomData.roomName}</title>
-            <meta name="description" content="room" />
-         </Head>
+         <Head
+            title={`Room: ${roomData.roomName}`}
+            desc="video call in course"
+         />
          <Box
             sx={{
                backgroundColor: '#202124',

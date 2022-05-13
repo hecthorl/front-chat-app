@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from 'components/Head'
 import { getProviders, signIn } from 'next-auth/react'
 import { Box, Button, Text } from '@mantine/core'
 import GoogleIcon from 'components/GoogleIcon'
@@ -7,10 +7,10 @@ import { IoEnterOutline } from 'react-icons/io5'
 export default function Signin({ providers }) {
    return (
       <>
-         <Head>
-            <title>Sign In - Google meet-clone</title>
-            <meta name="description" content="Ingreso a google-meet clone" />
-         </Head>
+         <Head
+            desc="Ingreso a google-meet clone"
+            title="Sign In - Google meet-clone"
+         />
          <Box
             sx={{
                display: 'flex',
