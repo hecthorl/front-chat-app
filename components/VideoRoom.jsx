@@ -3,7 +3,6 @@ import { useRoom } from 'use-twilio-video'
 import VideoRoomOptions from './VideoRoomOptions'
 import Participant from './Participant'
 import Mosaic from './Mosaic'
-// import BarSide from './BarSide'
 
 export default function VideoRoom({ token, roomName }) {
    const {
@@ -13,13 +12,12 @@ export default function VideoRoom({ token, roomName }) {
       disconnectRoom,
       localParticipant,
       remoteParticipants,
-      dominantSpeaker,
       isCameraOn,
       toggleCamera,
       isMicrophoneOn,
       toggleMicrophone
    } = useRoom()
-   // console.log(isCameraOn)
+
    useEffect(() => {
       if (!room && token && roomName) {
          connectRoom({
@@ -29,8 +27,6 @@ export default function VideoRoom({ token, roomName }) {
          return () => disconnectRoom()
       }
    }, [connectRoom, disconnectRoom, room, roomName, token])
-
-   // console.log(localParticipant?.identity)
 
    if (error) return `Error: ${error.message}`
    if (!room) return <div>Connecting...</div>
@@ -42,15 +38,11 @@ export default function VideoRoom({ token, roomName }) {
                <Participant key={i} participant={item} />
             ))}
          </Mosaic>
-         {/* <BarSide
-            defaultMain={localParticipant}
-            participants={remoteParticipants}
-         /> */}
          <VideoRoomOptions
             toggleCamera={toggleCamera}
             toggleMicrophone={toggleMicrophone}
-            isCameraOn
-            isMicrophoneOn
+            isCameraOn={isCameraOn}
+            isMicrophoneOn={isMicrophoneOn}
          />
       </>
    )

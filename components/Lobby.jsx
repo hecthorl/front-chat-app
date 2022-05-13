@@ -51,7 +51,6 @@ export default function Lobby({ handleSubmit }) {
                >
                   <Box
                      sx={{ width: '100%', transform: 'scaleX(-1)' }}
-                     muted
                      autoPlay
                      component="video"
                      ref={videoRef}

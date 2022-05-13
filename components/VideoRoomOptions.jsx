@@ -20,8 +20,13 @@ import { useRouter } from 'next/router'
 
 const Hour = dynamic(() => import('./Hour'), { ssr: false })
 
-export default function VideoRoomOptions({ roomData }) {
-   const { query } = useRouter()
+export default function VideoRoomOptions({
+   toggleCamera,
+   toggleMicrophone,
+   isCameraOn,
+   isMicrophoneOn
+}) {
+   const { query, push } = useRouter()
    return (
       <Box m={18} sx={{ display: 'flex', justifyContent: 'space-between' }}>
          <Box
@@ -49,11 +54,23 @@ export default function VideoRoomOptions({ roomData }) {
                flex: 1
             }}
          >
-            <ActionIcon size="xl" variant="filled" radius="xl">
-               {roomData?.algo ? <BiMicrophone /> : <BiMicrophoneOff />}
+            <ActionIcon
+               onClick={() => toggleMicrophone()}
+               size="xl"
+               variant="filled"
+               radius="xl"
+               color={isMicrophoneOn ? 'gray' : 'red'}
+            >
+               {isMicrophoneOn ? <BiMicrophone /> : <BiMicrophoneOff />}
             </ActionIcon>
-            <ActionIcon size="xl" variant="filled" radius="xl">
-               {roomData?.algo ? <BsCameraVideo /> : <BsCameraVideoOff />}
+            <ActionIcon
+               onClick={() => toggleCamera()}
+               size="xl"
+               variant="filled"
+               radius="xl"
+               color={isCameraOn ? 'gray' : 'red'}
+            >
+               {isCameraOn ? <BsCameraVideo /> : <BsCameraVideoOff />}
             </ActionIcon>
             <ActionIcon size="xl" variant="filled" radius="xl">
                <MdOutlineScreenShare />
@@ -61,7 +78,12 @@ export default function VideoRoomOptions({ roomData }) {
             <ActionIcon size="xl" variant="filled" radius="xl">
                <BsThreeDotsVertical />
             </ActionIcon>
-            <Button color="red" sx={{ fontSize: '1.5rem' }} radius="lg">
+            <Button
+               onClick={() => push('/')}
+               color="red"
+               sx={{ fontSize: '1.5rem' }}
+               radius="lg"
+            >
                <ImPhoneHangUp />
             </Button>
          </Box>
@@ -85,7 +107,7 @@ export default function VideoRoomOptions({ roomData }) {
                size="xl"
                radius="xl"
             >
-               {roomData?.algo ? <BsShieldLockFill /> : <BsShieldLock />}
+               {query?.algo ? <BsShieldLockFill /> : <BsShieldLock />}
             </ActionIcon>
             <ActionIcon
                sx={{
@@ -95,7 +117,7 @@ export default function VideoRoomOptions({ roomData }) {
                size="xl"
                radius="xl"
             >
-               {roomData?.algo ? <BsPeopleFill /> : <BsPeople />}
+               {query?.algo ? <BsPeopleFill /> : <BsPeople />}
             </ActionIcon>
             <ActionIcon
                sx={{
@@ -105,7 +127,7 @@ export default function VideoRoomOptions({ roomData }) {
                size="xl"
                radius="xl"
             >
-               {roomData?.algo ? <BsChatLeftTextFill /> : <BsChatLeftText />}
+               {query?.algo ? <BsChatLeftTextFill /> : <BsChatLeftText />}
             </ActionIcon>
             <ActionIcon
                sx={{
@@ -115,7 +137,7 @@ export default function VideoRoomOptions({ roomData }) {
                size="xl"
                radius="xl"
             >
-               {roomData?.algo ? <BsGrid1X2Fill /> : <BsGrid1X2 />}
+               {query?.algo ? <BsGrid1X2Fill /> : <BsGrid1X2 />}
             </ActionIcon>
             <ActionIcon
                sx={{
@@ -125,7 +147,7 @@ export default function VideoRoomOptions({ roomData }) {
                size="xl"
                radius="xl"
             >
-               {roomData?.algo ? <BsShieldLockFill /> : <BsShieldLock />}
+               {query?.algo ? <BsShieldLockFill /> : <BsShieldLock />}
             </ActionIcon>
          </Box>
       </Box>

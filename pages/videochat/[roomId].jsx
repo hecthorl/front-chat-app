@@ -1,20 +1,21 @@
 import { getSession } from 'next-auth/react'
 import Head from 'components/Head'
 import { Box } from '@mantine/core'
-import VideoRoom from 'components/VideoRoom'
-import Lobby from 'components/Lobby'
-import useTwilioConfig from 'hooks/useTwilioConfig'
 import useBool from 'hooks/useBool'
 import useUserAuth from 'hooks/useUserAuth'
+import useTwilioConfig from 'hooks/useTwilioConfig'
+import VideoRoom from 'components/VideoRoom'
+import Lobby from 'components/Lobby'
 
 export default function VideoChatRoom({ roomData, twilioToken }) {
    const { userData } = useUserAuth()
    const [isJoin, setJoin] = useBool()
    const { getToken, identity, roomName, token } = useTwilioConfig()
+
    return (
       <>
          <Head
-            title={`Room: ${roomData.roomName}`}
+            title={`Room: ${roomData?.roomName}`}
             desc="video call in course"
          />
          <Box

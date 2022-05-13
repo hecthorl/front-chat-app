@@ -1,6 +1,5 @@
 import { useTrack } from 'use-twilio-video'
 import AudioTrack from './AudioTrack'
-import Avatar from './Avatar'
 import VideoTrack from './VideoTrack'
 
 export default function Participant({ participant, callBack }) {
@@ -9,15 +8,12 @@ export default function Participant({ participant, callBack }) {
    })
    return (
       <>
-         {videoOn ? (
-            <VideoTrack
-               onClick={callBack}
-               name={participant.identity}
-               track={videoTrack}
-            />
-         ) : (
-            <Avatar name={participant.identity} />
-         )}
+         <VideoTrack
+            isVideoOn={videoOn}
+            onClick={callBack}
+            name={participant.identity}
+            track={videoTrack}
+         />
          {audioOn && <AudioTrack track={audioTrack} />}
       </>
    )

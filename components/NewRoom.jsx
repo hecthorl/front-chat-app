@@ -63,8 +63,8 @@ export default function NewRoom() {
                ]).then(data => {
                   form.reset()
                   push(
-                     `videoChat/${roomInfo.roomId}?roomToken=${data[1].token}`,
-                     `videoChat/${roomInfo.roomId}`
+                     `videochat/${roomInfo.roomId}?roomToken=${data[1].token}`,
+                     `videochat/${roomInfo.roomId}`
                   )
                })
             })}

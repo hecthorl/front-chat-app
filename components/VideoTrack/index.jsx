@@ -4,7 +4,7 @@ import { videoContainer, videoTag } from 'helpers/constants'
 import Avatar from 'components/Avatar'
 import useUserAuth from 'hooks/useUserAuth'
 
-export default function VideoTrack({ track, name }) {
+export default function VideoTrack({ track, name, isVideoOn }) {
    const videoRef = useRef(null)
    const { userData } = useUserAuth()
    useEffect(() => {
@@ -20,10 +20,9 @@ export default function VideoTrack({ track, name }) {
    return (
       <Box sx={videoContainer}>
          <Box
-            sx={{ ...videoTag, transform }}
+            sx={{ ...videoTag, transform, zIndex: isVideoOn ? 999999 : 0 }}
             component="video"
             autoPlay
-            muted
             ref={videoRef}
          />
          <Avatar name={name} />

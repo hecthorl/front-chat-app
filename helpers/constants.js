@@ -20,8 +20,7 @@ export const videoTag = {
    position: 'absolute',
    width: '100%',
    height: '100%',
-   objectFit: 'cover',
-   zIndex: 5
+   objectFit: 'cover'
 }
 export const videoContainer = {
    backgroundColor: '#36373a',
